@@ -1,9 +1,9 @@
 .tabla-datos{
   position: absolute;
-  width: 1024px;
+  width: 900px;
   height: 74px;
-  left: 360px;
-  top: 250px;
+  left: 300px;
+  top: 200px;
 }
 
 .tabla-datos thead th{
@@ -14,8 +14,8 @@
 }
 
 .tabla-datos tbody td{
-width: 256.63px;
-height: 71.61px;
-background: #FFFFFF;
-border: 1px solid #EBEBEB;
+  width: 256.63px;
+  height: 71.61px;
+  background: #FFFFFF;
+  border: 1px solid #EBEBEB;
 }

@@ -8,8 +8,8 @@ function App() {
     <>
       <Banner />
       <Sidebar />
-      <Button />
       <Table/>
+      <Button />
     </>
   );
 }
