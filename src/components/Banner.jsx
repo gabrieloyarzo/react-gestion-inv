@@ -1,4 +1,4 @@
-import "./home.css";
+import "./banner.css";
 import logo from "../images/logo.png";
 
 function Home() {

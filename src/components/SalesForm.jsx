@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "./formularioVentas.css"
+import "./salesform.css"
 
 function FormularioVentas({ closeForm }) {
   const [producto, setProducto] = useState({

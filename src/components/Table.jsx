@@ -1,4 +1,4 @@
-import "./contenido.css";
+import "./table.css";
 
 const baseURL = "https://gestion-inv-api.onrender.com/api/producto";
 

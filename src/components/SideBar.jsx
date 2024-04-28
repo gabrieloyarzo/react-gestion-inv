@@ -1,4 +1,4 @@
-import "./menu.css";
+import "./sidebar.css";
 
 function Menu() {
   return (
