@@ -26,26 +26,36 @@
   justify-content: space-between;
   height: 100%; /* Ajusta esto según el alto de tu fila */
   background: #000;
+  border-radius: 5px; 
+}
+
+.tabla-datos tbody .boton-celda {
+  width: 32px; 
 }
 
 .boton {
   border: none;
   cursor: pointer;
-  width: 30px; /* Ajusta esto al ancho deseado */
-  height: 30px; /* Ajusta esto al alto deseado */
+  width: 32px; 
+  height: 32px; 
+  border-radius: 5px; 
+  background-position: center;
+  background-size: cover;
+  transition: background-color 0.3s ease;
 }
 
-.tabla-datos tbody .boton-celda {
-  width: 40px; 
+.boton:hover {
+  background-color: #8d470d; /* Cambia el color de fondo a rojo cuando se pasa el cursor sobre el botón */
 }
-
 
 .boton-eliminar {
   background: url('/src/components/delete.png') no-repeat;
+  background-position: center;
   background-size: cover;
 }
 
 .boton-modificar {
   background: url('/src/components/edit.png') no-repeat;
   background-size: cover;
+  background-position: center;
 }
