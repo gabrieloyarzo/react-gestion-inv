@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import "./table.css";
 
 const baseURL = "https://gestion-inv-api.onrender.com/api/producto";
@@ -26,11 +26,11 @@ function Table() {
 
   const handleDelete = async (id) => {
     const deleteURL = `${baseURL}/${hoveredRow}`;
-  
+
     const response = await fetch(deleteURL, {
       method: "DELETE",
     });
-  
+
     if (response.ok) {
       // La tupla ha sido eliminada correctamente
       alert(`Tupla con ID ${id} eliminada.`);
@@ -65,7 +65,16 @@ function Table() {
                 <td>{item.categoria}</td>
                 <td>{item.stock}</td>
                 <td>{item.precio}</td>
-                <td>{hoveredRow === item.id && <button onClick={() => handleDelete(item.id)}>Eliminar</button>}</td>
+                <td>
+                  {hoveredRow === item.id && (
+                    <div>
+                      <button onClick={() => handleDelete(item.id)}>
+                        Eliminar
+                      </button>
+                      <button>Modificar</button>
+                    </div>
+                  )}
+                </td>
               </tr>
             ))}
         </tbody>
