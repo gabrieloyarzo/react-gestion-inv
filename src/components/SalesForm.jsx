@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./salesform.css";
 
-function SalesForm({ closeForm }) {
-  const [producto, setProducto] = useState({
+function SalesForm({ closeForm, modo, productoInicial }) {
+  const [producto, setProducto] = useState(productoInicial || {
     id: "",
     nombre: "",
     categoria: "",
@@ -22,9 +22,14 @@ function SalesForm({ closeForm }) {
     e.preventDefault();
 
     const baseURL = "https://gestion-inv-api.onrender.com/api/producto";
+    let method = 'POST'; // Por defecto, crear un nuevo registro
+
+    if (modo === 'modificar') {
+      method = 'PUT'; // Modificar un registro existente
+    }
 
     const response = await fetch(`${baseURL}`, {
-      method: "POST",
+      method: method,
       headers: {
         "Content-Type": "application/json",
       },
@@ -32,28 +37,30 @@ function SalesForm({ closeForm }) {
     });
 
     if (response.ok) {
-      alert("Producto registrado con éxito");
+      alert(modo === 'modificar' ? "Producto modificado con éxito" : "Producto registrado con éxito");
       closeForm();
     } else {
-      alert("Hubo un error al registrar el producto");
+      alert("Hubo un error al registrar o modificar el producto");
     }
   };
 
   return (
     <div style={{ zIndex: 1 }} id="ventana_flotante">
-      <div className="titulo">Registro de Productos</div>
+      <div className="titulo">{modo === 'modificar' ? 'Modificar Producto' : 'Registro de Productos'}</div>
       <form onSubmit={handleSubmit}>
         <div className="contenido">
-          <div className="fila centrado">
-            <div className="etiqueta">ID del producto:</div>
-            <input
-              type="text"
-              className="input"
-              name="id"
-              value={producto.id}
-              onChange={handleChange}
-            />
-          </div>
+          {modo !== 'modificar' && (
+            <div className="fila centrado">
+              <div className="etiqueta">ID del producto:</div>
+              <input
+                type="text"
+                className="input"
+                name="id"
+                value={producto.id}
+                onChange={handleChange}
+              />
+            </div>
+          )}
           <div className="fila centrado">
             <div className="etiqueta">Nombre:</div>
             <input
@@ -99,7 +106,7 @@ function SalesForm({ closeForm }) {
               Cerrar
             </button>
             <button className="guardar-btn" type="submit">
-              Guardar
+              {modo === 'modificar' ? 'Modificar' : 'Guardar'}
             </button>
           </div>
         </div>
