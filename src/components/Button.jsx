@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./button.css";
-import Formulario from "./FormularioVentas";
+import Formulario from "./SalesForm";
 
 function Button() {
   const [showForm, setShowForm] = useState(false);
@@ -11,7 +11,7 @@ function Button() {
 
   return (
     <>
-      <div id="boton-flotante" class="material-symbols-outlined" onClick={handleClick}>
+      <div id="boton-flotante" className="material-symbols-outlined" onClick={handleClick}>
         +
       </div>
       {showForm && <Formulario closeForm={handleClick}/>}

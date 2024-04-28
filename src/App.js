@@ -1,7 +1,7 @@
-import Home from "./components/Home";
-import Menu from "./components/Menu";
+import Home from "./components/Banner";
+import Menu from "./components/Sidebar";
 import Button from "./components/Button";
-import Contenido from "./components/Contenido";
+import Contenido from "./components/Table";
 
 function App() {
   return (
