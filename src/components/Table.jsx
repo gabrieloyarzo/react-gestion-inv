@@ -24,8 +24,8 @@ function Table() {
     setHoveredRow(null);
   };
 
-  const handleDelete = async (hoveredRow) => {
-    const baseURL = `https://gestion-inv-api.onrender.com/api/producto/${hoveredRow}`;
+  const handleDelete = async (id) => {
+    const deleteURL = `${baseURL}/${hoveredRow}`;
   
     const response = await fetch(deleteURL, {
       method: "DELETE",
@@ -33,10 +33,10 @@ function Table() {
   
     if (response.ok) {
       // La tupla ha sido eliminada correctamente
-      console.log(`Tupla con ID ${hoveredRow} eliminada.`);
+      alert(`Tupla con ID ${id} eliminada.`);
     } else {
       // Manejar errores en caso de que la eliminación falle
-      console.error(`Error al eliminar tupla con ID ${hoveredRow}: ${response.statusText}`);
+      alert(`Error al eliminar tupla con ID ${id}: ${response.statusText}`);
     }
   };
 
