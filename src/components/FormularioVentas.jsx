@@ -2,7 +2,7 @@ import "./formularioVentas.css"
 
 function FormularioVentas({ closeForm }) {
   return (
-    <div class="formulario">
+    <div style={{ zIndex: 1 }} class="formulario">
       <div class="titulo">
         <h1>REGISTRO DE PRODUCTOS</h1>
       </div>

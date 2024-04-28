@@ -2,8 +2,6 @@ import "./contenido.css";
 
 const baseURL = "https://gestion-inv-api.onrender.com/api/producto";
 
-//  fetch(`${baseURL}/${id}
-
 const response = await fetch(`${baseURL}`, {
   method: "GET",
   headers: {
