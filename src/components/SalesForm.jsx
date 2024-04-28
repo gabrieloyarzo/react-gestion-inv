@@ -47,34 +47,34 @@ function SalesForm({ closeForm }) {
 
   return (
     <div style={{ zIndex: 1 }} id="ventana_flotante">
-      <div class="titulo">Registro de Productos</div>
+      <div className="titulo">Registro de Productos</div>
       <form onSubmit={handleSubmit}>
-        <div class="contenido">
-          <div class="fila centrado">
-            <div class="etiqueta">ID del producto:</div>
-            <input type="text" class="input" />
+        <div className="contenido">
+          <div className="fila centrado">
+            <div className="etiqueta">ID del producto:</div>
+            <input type="text" className="input" />
           </div>
-          <div class="fila centrado">
-            <div class="etiqueta">Nombre:</div>
-            <input type="text" class="input" />
+          <div className="fila centrado">
+            <div className="etiqueta">Nombre:</div>
+            <input type="text" className="input" />
           </div>
-          <div class="fila centrado">
-            <div class="etiqueta">Categoría:</div>
-            <input type="text" class="input" />
+          <div className="fila centrado">
+            <div className="etiqueta">Categoría:</div>
+            <input type="text" className="input" />
           </div>
-          <div class="fila centrado">
-            <div class="etiqueta">Stock:</div>
-            <input type="text" class="input" />
+          <div className="fila centrado">
+            <div className="etiqueta">Stock:</div>
+            <input type="text" className="input" />
           </div>
-          <div class="fila centrado">
-            <div class="etiqueta">Precio:</div>
-            <input type="text" class="input" />
+          <div className="fila centrado">
+            <div className="etiqueta">Precio:</div>
+            <input type="text" className="input" />
           </div>
-          <div style="text-align: center; margin-top: 20px;">
-            <button class="cerrar-btn" onclick={closeForm}>
+          <div className="opciones">
+            <button className="cerrar-btn" onClick={closeForm}>
               Cerrar
             </button>
-            <button class="guardar-btn" type="submit">
+            <button className="guardar-btn" type="submit">
               Guardar
             </button>
           </div>
