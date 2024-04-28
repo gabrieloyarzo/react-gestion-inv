@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import SalesForm from "./SalesForm"
 import "./table.css";
 
 const baseURL = "https://gestion-inv-api.onrender.com/api/producto";
@@ -39,6 +40,10 @@ function Table() {
       alert(`Error al eliminar tupla con ID ${id}: ${response.statusText}`);
     }
   };
+
+  const handleModify = async (id) => {
+
+  }
 
   return (
     <div className="tabla-datos">
