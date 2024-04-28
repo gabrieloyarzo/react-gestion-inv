@@ -12,7 +12,7 @@ const response = await fetch(`${baseURL}`, {
 const data = await response.json();
 console.log(data);
 
-function Contenido() {
+function Table() {
   return (
     <div className="tabla-datos">
       <table>
@@ -42,4 +42,4 @@ function Contenido() {
   );
 }
 
-export default Contenido;
+export default Table;

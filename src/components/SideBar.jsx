@@ -1,6 +1,6 @@
 import "./sidebar.css";
 
-function Menu() {
+function Sidebar() {
   return (
     <div className="container-menu">
       <div className="cont-menu">
@@ -29,4 +29,4 @@ function Menu() {
   );
 }
 
-export default Menu;
+export default Sidebar;
