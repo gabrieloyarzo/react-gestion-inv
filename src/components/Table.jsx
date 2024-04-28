@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SalesForm from "./SalesForm"
+import SalesForm from "./SalesForm";
 import "./table.css";
 
 const baseURL = "https://gestion-inv-api.onrender.com/api/producto";
@@ -16,6 +16,12 @@ console.log(data);
 
 function Table() {
   const [hoveredRow, setHoveredRow] = useState(null);
+  const [productoModificar, setProductoModificar] = useState(null);
+  const [showForm, setShowForm] = useState(false);
+
+  const handleClick = () => {
+    setShowForm(!showForm);
+  };
 
   const handleMouseEnter = (id) => {
     setHoveredRow(id);
@@ -41,9 +47,15 @@ function Table() {
     }
   };
 
-  const handleModify = async (id) => {
-
-  }
+  const handleModify = (id) => {
+    const productoModificar = data.find((item) => item.id === id);
+    if (productoModificar) {
+      setProductoModificar(productoModificar); // Establecer los datos del producto a modificar
+      setShowForm(true); // Mostrar SalesForm al establecer showForm en true
+    } else {
+      alert("Producto no encontrado para modificar");
+    }
+  };
 
   return (
     <div className="tabla-datos">
@@ -76,6 +88,13 @@ function Table() {
                       <button className="boton boton-modificar" onClick={() => handleModify(item.id)}></button>
                       <button className="boton boton-eliminar" onClick={() => handleDelete(item.id)}></button>
                     </div>
+                  )}
+                  {showForm && (
+                    <SalesForm
+                      closeForm={handleClick}
+                      modo="modificar"
+                      productoInicial={productoModificar}
+                    />
                   )}
                 </td>
               </tr>
