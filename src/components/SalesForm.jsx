@@ -1,83 +1,87 @@
-import React, { useState } from 'react';
-import "./salesform.css"
+import React, { useState } from "react";
+import "./salesform.css";
 
-function FormularioVentas({ closeForm }) {
+function SalesForm({ closeForm }) {
   const [producto, setProducto] = useState({
-    id: '',
-    nombre: '',
-    categoria: '',
-    stock: '',
-    precio: ''
+    id: "",
+    nombre: "",
+    categoria: "",
+    stock: "",
+    precio: "",
   });
 
   const handleChange = (e) => {
-    let value = e.target.name === 'stock' || e.target.name === 'id' || e.target.name === 'precio' ? parseInt(e.target.value) : e.target.value;
-  
+    let value =
+      e.target.name === "stock" ||
+      e.target.name === "id" ||
+      e.target.name === "precio"
+        ? parseInt(e.target.value)
+        : e.target.value;
+
     setProducto({
       ...producto,
-      [e.target.name]: value
+      [e.target.name]: value,
     });
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-  const baseURL = "https://gestion-inv-api.onrender.com/api/producto";
+    const baseURL = "https://gestion-inv-api.onrender.com/api/producto";
 
-  const response = await fetch(`${baseURL}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(producto)
-  });
+    const response = await fetch(`${baseURL}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(producto),
+    });
 
     if (response.ok) {
-      alert('Producto registrado con éxito');
+      alert("Producto registrado con éxito");
       closeForm();
     } else {
-      alert('Hubo un error al registrar el producto');
+      alert("Hubo un error al registrar el producto");
     }
   };
 
   return (
-    <div style={{ zIndex: 1 }} className="formulario">
-      <div className="titulo">
-        <h1>REGISTRO DE PRODUCTOS</h1>
-      </div>
-      <div className="contenido">
-        <form className="contenido-detalle" onSubmit={handleSubmit}>
-          <div className="detalle">
-            <label htmlFor="id-producto">ID del producto:</label>
-            <input type="text" id="id-producto" name="id-producto"/><br></br>
+    <div style={{ zIndex: 1 }} id="ventana_flotante">
+      <div class="titulo">Registro de Productos</div>
+      <form onSubmit={handleSubmit}>
+        <div class="contenido">
+          <div class="fila centrado">
+            <div class="etiqueta">ID del producto:</div>
+            <input type="text" class="input" />
           </div>
-          <div className="detalle">
-            <label htmlFor="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre"/><br></br>
+          <div class="fila centrado">
+            <div class="etiqueta">Nombre:</div>
+            <input type="text" class="input" />
           </div>
-          <div className="detalle">
-            <label htmlFor="categoria">Categoria:</label>
-            <input type="text" id="categoria" name="categoria"/><br></br>
+          <div class="fila centrado">
+            <div class="etiqueta">Categoría:</div>
+            <input type="text" class="input" />
           </div>
-          <div className="detalle">
-            <label htmlFor="stock">Stock:</label>
-            <input type="text" id="stock" name="stock"/><br></br>
+          <div class="fila centrado">
+            <div class="etiqueta">Stock:</div>
+            <input type="text" class="input" />
           </div>
-          <div className="detalle">
-            <label htmlFor="precio">Precio:</label>
-            <input type="text" id="precio" name="precio"/><br></br>
+          <div class="fila centrado">
+            <div class="etiqueta">Precio:</div>
+            <input type="text" class="input" />
           </div>
-          <div className="opciones">
-            <button onClick={closeForm}>Cancelar</button>
-            <button>Guardar</button>
+          <div style="text-align: center; margin-top: 20px;">
+            <button class="cerrar-btn" onclick={closeForm}>
+              Cerrar
+            </button>
+            <button class="guardar-btn" type="submit">
+              Guardar
+            </button>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
-  )
+  );
 }
 
-export default FormularioVentas;
-
-
+export default SalesForm;

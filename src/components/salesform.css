@@ -1,94 +1,105 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Nunito', sans-serif;
+#ventana_flotante {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  background-color: #ffffff;
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 20px;
 }
 
-h1 {
-  margin: 0;
-  padding: 0;
-  border: none;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
+body {
+  font-family: 'Nunito', sans-serif; 
 }
 
-.formulario{
-  position: absolute;
-  width: 713.69px;
-  height: 532.2px;
-  left: 524.37px;
-  top: 200px;
-  background: #FFFFFF;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.titulo{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  width: 713.69px;
-  height: 96.68px;
-  left: 0px;
-  top: 0px;
-  background: #292929;
-  border-radius: 12px;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 33px;
+.titulo {
+  background-color: #292929;
   color: #43C8D0;
+  padding: 20px 20px;
+  margin: 1;
+  text-align: center;
+  border-radius: 10px 10px 0 0;
 }
 
-.contenido{
-  position: absolute;
-  top:150px;
+.contenido {
+  padding: 20px 0;
 }
 
-.detalle {
+.fila {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
-.detalle input {
-  display: flex;
+.centrado {
   justify-content: center;
-  width: 214.72px;
-  height: 42px;
+}
+
+.etiqueta {
+  flex: 0.6;
+  margin-right: 1px;
+  font-weight: bold; 
+}
+
+input {
+  flex: 0;
+  padding: 9px;
+  border: 1.5px solid #000000;
+  color: #00000080;
+  border-radius: 3%;
+  font-size: 13px;
+}
+
+.input_producto {
+  flex: 0.5; 
+  padding: 8px;
   border: 1px solid #000000;
-  box-shadow: 0px 1px 3px rgba(40, 40, 40, 0.25);
-  border-radius: 3px;
-  font-size: 20px;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
-.detalle label {
-  font-weight: 700;
-  font-size: 20px;
+.input_cantidad {
+  width: 50px; 
+  padding: 8px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.unidad {
+  margin-left: 4px;
+  color: #0000008f;
+  font-weight: bold; 
+}
+
+.total {
+  flex: 0; 
+  text-align: center;
+  color: #0000008f;
+  font-weight: bold; 
+}
+
+.cerrar-btn {
+  background-color: #F9B872;
   color: #000000;
-  margin-right: 10px;
-}
-
-.opciones{
-  position: absolute;
-  top: 300px;
-}
-
-.opciones button{
+  padding: 10px 40px;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  width: 155.72px;
-  height: 43.88px;
-  left: 374.5px;
-  top: 451.13px;
-  background: #F9B872;
-  border-radius: 6px;
-  font-size: 18px;
-  font-weight: bolder;
+}
+
+.guardar-btn {
+  background-color: #F9B872;
+  color: #000;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 30px;
+  margin-left: 30px;
 }
