@@ -19,25 +19,3 @@
   background: #FFFFFF;
   border: 1px solid #EBEBEB;
 }
-
-/* Mostrar el botón al pasar el cursor sobre la fila */
-.tabla-datos tbody tr:hover::after {
-  content: 'Eliminar';
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100px; 
-  height: 100%;
-  background-color: black;
-  color: white;
-  text-align: center;
-  line-height: 50px; 
-}
-
-/* Ocultar el botón por defecto */
-.tabla-datos tbody tr::after {
-  content: '';
-  display: none;
-}
-
