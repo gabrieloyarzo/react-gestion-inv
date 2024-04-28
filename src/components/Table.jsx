@@ -82,15 +82,11 @@ function Table() {
                 <td>{item.categoria}</td>
                 <td>{item.stock}</td>
                 <td>{item.precio}</td>
-                <td>
+                <td className="boton-celda">
                   {hoveredRow === item.id && (
-                    <div>
-                      <button onClick={() => handleDelete(item.id)}>
-                        Eliminar
-                      </button>
-                      <button onClick={() => handleModify(item.id)}>
-                        Modificar
-                      </button>
+                    <div className="boton-contenedor">
+                      <button className="boton boton-modificar" onClick={() => handleModify(item.id)}></button>
+                      <button className="boton boton-eliminar" onClick={() => handleDelete(item.id)}></button>
                     </div>
                   )}
                   {showForm && (
