@@ -42,12 +42,12 @@
   border: 1px solid #EBEBEB;
 }
 
-/* CSS */
 .boton-contenedor {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%; /* Ajusta esto según el alto de tu fila */
+  width: 50%;
   background: #000;
 }
 
