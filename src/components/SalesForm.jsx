@@ -21,11 +21,12 @@ function SalesForm({ closeForm, modo, productoInicial }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const baseURL = "https://gestion-inv-api.onrender.com/api/producto";
-    let method = 'POST'; // Por defecto, crear un nuevo registro
+    let baseURL = "https://gestion-inv-api.onrender.com/api/producto";
+    let method = 'POST';
 
     if (modo === 'modificar') {
-      method = 'PUT'; // Modificar un registro existente
+      method = 'PUT';
+      baseURL = `${baseURL}/${productoInicial.id}`
     }
 
     const response = await fetch(`${baseURL}`, {
