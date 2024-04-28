@@ -24,19 +24,19 @@ function Table() {
     setHoveredRow(null);
   };
 
-  const handleDelete = async (hoveredRow) => {
-    const baseURL = `https://gestion-inv-api.onrender.com/api/producto/${hoveredRow}`;
+  const handleDelete = async (id) => {
+    const deleteURL = `${baseURL}/${hoveredRow}`;
   
-    const response = await fetch(baseURL, {
+    const response = await fetch(deleteURL, {
       method: "DELETE",
     });
   
     if (response.ok) {
       // La tupla ha sido eliminada correctamente
-      console.log(`Tupla con ID ${hoveredRow} eliminada.`);
+      console.log(`Tupla con ID ${id} eliminada.`);
     } else {
       // Manejar errores en caso de que la eliminación falle
-      console.error(`Error al eliminar tupla con ID ${hoveredRow}: ${response.statusText}`);
+      console.error(`Error al eliminar tupla con ID ${id}: ${response.statusText}`);
     }
   };
 
@@ -65,7 +65,7 @@ function Table() {
                 <td>{item.categoria}</td>
                 <td>{item.stock}</td>
                 <td>{item.precio}</td>
-                <td>{hoveredRow === item.id && <button onClick={handleDelete}>Eliminar</button>}</td>
+                <td>{hoveredRow === item.id && <button onClick={() => handleDelete(item.id)}>Eliminar</button>}</td>
               </tr>
             ))}
         </tbody>
