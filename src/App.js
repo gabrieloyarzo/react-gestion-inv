@@ -1,15 +1,15 @@
-import Home from "./components/Banner";
-import Menu from "./components/Sidebar";
+import Banner from "./components/Banner";
+import Sidebar from "./components/Sidebar";
 import Button from "./components/Button";
-import Contenido from "./components/Table";
+import Table from "./components/Table";
 
 function App() {
   return (
     <>
-      <Home />
-      <Menu />
+      <Banner />
+      <Sidebar />
       <Button />
-      <Contenido/>
+      <Table/>
     </>
   );
 }
