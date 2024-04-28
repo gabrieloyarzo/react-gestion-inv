@@ -11,20 +11,10 @@ function SalesForm({ closeForm }) {
   });
 
   const handleChange = (e) => {
-    let value = e.target.value;
-
-/* 
-
-      e.target.name === "stock" ||
-      e.target.name === "id" ||
-      e.target.name === "precio"
-        ? parseInt(e.target.value)
-        : 
-*/
-
+    const { name, value } = e.target;
     setProducto({
       ...producto,
-      [e.target.name]: value,
+      [name]: value,
     });
   };
 
@@ -56,23 +46,53 @@ function SalesForm({ closeForm }) {
         <div className="contenido">
           <div className="fila centrado">
             <div className="etiqueta">ID del producto:</div>
-            <input type="text" className="input" />
+            <input
+              type="text"
+              className="input"
+              name="id"
+              value={producto.id}
+              onChange={handleChange}
+            />
           </div>
           <div className="fila centrado">
             <div className="etiqueta">Nombre:</div>
-            <input type="text" className="input" />
+            <input
+              type="text"
+              className="input"
+              name="nombre"
+              value={producto.nombre}
+              onChange={handleChange}
+            />
           </div>
           <div className="fila centrado">
             <div className="etiqueta">Categoría:</div>
-            <input type="text" className="input" />
+            <input
+              type="text"
+              className="input"
+              name="categoria"
+              value={producto.categoria}
+              onChange={handleChange}
+            />
           </div>
           <div className="fila centrado">
             <div className="etiqueta">Stock:</div>
-            <input type="text" className="input" />
+            <input
+              type="text"
+              className="input"
+              name="stock"
+              value={producto.stock}
+              onChange={handleChange}
+            />
           </div>
           <div className="fila centrado">
             <div className="etiqueta">Precio:</div>
-            <input type="text" className="input" />
+            <input
+              type="text"
+              className="input"
+              name="precio"
+              value={producto.precio}
+              onChange={handleChange}
+            />
           </div>
           <div className="opciones">
             <button className="cerrar-btn" onClick={closeForm}>
