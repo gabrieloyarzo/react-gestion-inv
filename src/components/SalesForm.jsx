@@ -49,18 +49,16 @@ function SalesForm({ closeForm, modo, productoInicial }) {
       <div className="titulo">{modo === 'modificar' ? 'Modificar Producto' : 'Registro de Productos'}</div>
       <form onSubmit={handleSubmit}>
         <div className="contenido">
-          {modo !== 'modificar' && (
             <div className="fila centrado">
               <div className="etiqueta">ID del producto:</div>
               <input
                 type="text"
                 className="input"
                 name="id"
-                value={producto.id}
+                value={producto.id}   
                 onChange={handleChange}
               />
             </div>
-          )}
           <div className="fila centrado">
             <div className="etiqueta">Nombre:</div>
             <input
