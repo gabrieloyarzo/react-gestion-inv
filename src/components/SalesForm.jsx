@@ -11,12 +11,16 @@ function SalesForm({ closeForm }) {
   });
 
   const handleChange = (e) => {
-    let value =
+    let value = e.target.value;
+
+/* 
+
       e.target.name === "stock" ||
       e.target.name === "id" ||
       e.target.name === "precio"
         ? parseInt(e.target.value)
-        : e.target.value;
+        : 
+*/
 
     setProducto({
       ...producto,
