@@ -72,11 +72,9 @@ function Table() {
                 <td>{item.precio}</td>
                 <td>
                   {hoveredRow === item.id && (
-                    <div>
-                      <button onClick={() => handleDelete(item.id)}>
-                        Eliminar
-                      </button>
-                      <button>Modificar</button>
+                    <div className="boton-contenedor">
+                      <button className="boton boton-modificar" onClick={() => handleModify(item.id)}></button>
+                      <button className="boton boton-eliminar" onClick={() => handleDelete(item.id)}></button>
                     </div>
                   )}
                 </td>
