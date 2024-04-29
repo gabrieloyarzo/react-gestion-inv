@@ -1,4 +1,9 @@
 import "./sidebar.css";
+import proveedores from "../images/proveedores.png";
+import ventas from "../images/ventas.png";
+import productos from "../images/productos.png";
+import pedidos from "../images/pedidos.png";
+
 
 function Sidebar() {
   return (
@@ -7,19 +12,19 @@ function Sidebar() {
         <nav>
           <div id="contenedor-button">
             <a id="proveedores" href="#">
-              <img src="./images/proveedores.png" />
+              <img src={proveedores} />
               <h1>Proveedores</h1>
             </a>
             <a id="ventas" href="#">
-              <img src="./images/ventas.png" />
+              <img src={ventas} />
               <h1>Ventas</h1>
             </a>
             <a id="productos" href="#">
-              <img src="./images/productos.png" />
+              <img src={productos} />
               <h1>Productos</h1>
             </a>
             <a id="pedidos" href="#">
-              <img src="./images/pedidos.png" />
+              <img src={pedidos} />
               <h1>Pedidos</h1>
             </a>
           </div>
