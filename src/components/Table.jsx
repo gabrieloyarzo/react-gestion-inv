@@ -1,23 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SalesForm from "./SalesForm";
 import "./table.css";
 
 const baseURL = "https://gestion-inv-api.onrender.com/api/producto";
 
-const response = await fetch(`${baseURL}`, {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+// const response = await fetch(`${baseURL}`, {
+//   method: "GET",
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+// });
 
-const data = await response.json();
-console.log(data);
+// const data = await response.json();
+// console.log(data);
 
 function Table() {
   const [hoveredRow, setHoveredRow] = useState(null);
   const [productoModificar, setProductoModificar] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const [data, setData] = useState([]);
+  
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`${baseURL}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const newData = await response.json();
+      setData(newData);
+    } catch (error) {
+      console.error("Error al obtener datos:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleClick = () => {
     setShowForm(!showForm);
@@ -39,10 +59,9 @@ function Table() {
     });
 
     if (response.ok) {
-      // La tupla ha sido eliminada correctamente
+      fetchData();
       alert(`Tupla con ID ${id} eliminada.`);
     } else {
-      // Manejar errores en caso de que la eliminación falle
       alert(`Error al eliminar tupla con ID ${id}: ${response.statusText}`);
     }
   };
@@ -50,8 +69,8 @@ function Table() {
   const handleModify = (id) => {
     const productoModificar = data.find((item) => item.id === id);
     if (productoModificar) {
-      setProductoModificar(productoModificar); // Establecer los datos del producto a modificar
-      setShowForm(true); // Mostrar SalesForm al establecer showForm en true
+      setProductoModificar(productoModificar);
+      setShowForm(true);
     } else {
       alert("Producto no encontrado para modificar");
     }
