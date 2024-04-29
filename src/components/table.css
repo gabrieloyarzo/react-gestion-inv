@@ -9,8 +9,9 @@
 .tabla-datos thead th{
   width: 256.3px;
   height: 42.8px;
-  background: #F0F0F0;
+  background: #946b38b1;
   border: 1px solid #EBEBEB;
+  border-radius: 7px; 
 }
 
 .tabla-datos tbody td{
@@ -18,8 +19,15 @@
   height: 71.61px;
   background: #FFFFFF;
   border: 1px solid #EBEBEB;
+  text-align: center;
 }
 
+.id-celda {
+  font-weight: bold;
+}
+
+
+/* Botones eliminar y modificar */
 .boton-contenedor {
   display: flex;
   flex-direction: column;
