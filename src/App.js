@@ -1,7 +1,7 @@
 import Banner from "./components/Banner";
-import Sidebar from "./components/Sidebar";
 import Button from "./components/Button";
 import Table from "./components/Table";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
