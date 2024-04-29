@@ -1,3 +1,4 @@
+import "../global.css";
 import "./sidebar.css";
 import proveedores from "../images/proveedores.png";
 import ventas from "../images/ventas.png";
