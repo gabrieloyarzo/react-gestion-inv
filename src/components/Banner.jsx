@@ -1,3 +1,4 @@
+import "../global.css"
 import "./banner.css";
 import logo from "../images/logo.png";
 
