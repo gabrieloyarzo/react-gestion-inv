@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./button.css";
-import SalesForm from "./SalesForm";
+import FormProduct from "./FormProduct";
 
 function Button() {
   const [showForm, setShowForm] = useState(false);
@@ -14,7 +14,7 @@ function Button() {
       <div id="boton-flotante" className="material-symbols-outlined" onClick={handleClick}>
         +
       </div>
-      {showForm && <SalesForm closeForm={handleClick}/>}
+      {showForm && <FormProduct closeForm={handleClick}/>}
     </>
   );
 }

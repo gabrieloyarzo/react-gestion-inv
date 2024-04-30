@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./salesform.css";
+import "./formproduct.css";
 
-function SalesForm({ closeForm, modo, productoInicial }) {
+function FormProduct({ closeForm, modo, productoInicial }) {
   const [producto, setProducto] = useState(productoInicial || {
     id: "",
     nombre: "",
@@ -114,4 +114,4 @@ function SalesForm({ closeForm, modo, productoInicial }) {
   );
 }
 
-export default SalesForm;
+export default FormProduct;

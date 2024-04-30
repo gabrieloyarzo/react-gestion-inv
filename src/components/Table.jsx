@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import SalesForm from "./SalesForm";
+import FormProduct from "./FormProduct";
 import "./table.css";
 
 const baseURL = "https://gestion-inv-api.onrender.com/api/producto";
@@ -109,7 +109,7 @@ function Table() {
                     </div>
                   )}
                   {showForm && (
-                    <SalesForm
+                    <FormProduct
                       closeForm={handleClick}
                       modo="modificar"
                       productoInicial={productoModificar}
