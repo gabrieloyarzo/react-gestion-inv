@@ -1,4 +1,4 @@
-import "../global.css";
+import "../globals.css";
 import "./sidebar.css";
 import proveedores from "../images/proveedores.png";
 import ventas from "../images/ventas.png";
