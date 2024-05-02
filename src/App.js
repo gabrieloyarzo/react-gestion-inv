@@ -1,15 +1,13 @@
-import Banner from "./components/Banner";
-import Button from "./components/Button";
-import Table from "./components/Table";
-import Sidebar from "./components/SideBar";
+import React from "react";
+import Sidebar from "./components/SideBar"
+import Productos from "./pages/Productos"
+import Ventas from "./pages/Ventas"
 
 function App() {
   return (
     <>
-      <Banner />
-      <Sidebar />
-      <Table/>
-      <Button />
+      <Productos/>
+      <Sidebar/>
     </>
   );
 }
