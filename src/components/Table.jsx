@@ -4,16 +4,6 @@ import "./table.css";
 
 const baseURL = "https://gestion-inv-api.onrender.com/api/producto";
 
-// const response = await fetch(`${baseURL}`, {
-//   method: "GET",
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
-// });
-
-// const data = await response.json();
-// console.log(data);
-
 function Table() {
   const [hoveredRow, setHoveredRow] = useState(null);
   const [productoModificar, setProductoModificar] = useState(null);
@@ -59,7 +49,6 @@ function Table() {
     });
 
     if (response.ok) {
-      fetchData();
       alert(`Tupla con ID ${id} eliminada.`);
     } else {
       alert(`Error al eliminar tupla con ID ${id}: ${response.statusText}`);
