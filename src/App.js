@@ -11,14 +11,15 @@ import Ventas from "./pages/Ventas"
 
 function App() {
   return (
-    <Router>
-    <Sidebar />
-    <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/productos" element={<Productos />} />
-        <Route path="/ventas" element={<Ventas />} />
-    </Routes>
-</Router>
+    <Productos/>
+//     <Router>
+//     <Sidebar />
+//     <Routes>
+//         <Route exact path="/" element={<Home />} />
+//         <Route path="/productos" element={<Productos />} />
+//         <Route path="/ventas" element={<Ventas />} />
+//     </Routes>
+// </Router>
   );
 }
 

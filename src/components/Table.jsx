@@ -25,10 +25,6 @@ function Table() {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const handleClick = () => {
     setShowForm(!showForm);
   };
