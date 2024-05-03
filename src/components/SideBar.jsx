@@ -1,3 +1,5 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import "../globals.css";
 import "./sidebar.css";
 import proveedores from "../images/proveedores.png";
@@ -16,14 +18,14 @@ function Sidebar() {
               <img src={proveedores} />
               <h1>Proveedores</h1>
             </a>
-            <a id="ventas" href="#">
+            <NavLink id="ventas"  to="/ventas">
               <img src={ventas} />
               <h1>Ventas</h1>
-            </a>
-            <a id="productos" href="#">
+            </NavLink>
+            <NavLink id="productos" to="/productos">
               <img src={productos} />
               <h1>Productos</h1>
-            </a>
+            </NavLink>
             <a id="pedidos" href="#">
               <img src={pedidos} />
               <h1>Pedidos</h1>
