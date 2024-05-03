@@ -11,7 +11,16 @@ import Ventas from "./pages/Ventas"
 
 function App() {
   return (
-    <Productos/>
+    <>
+      <Productos/>
+      <Sidebar/>
+    </>
+  );
+}
+
+export default App;
+
+/*
 //     <Router>
 //     <Sidebar />
 //     <Routes>
@@ -20,7 +29,4 @@ function App() {
 //         <Route path="/ventas" element={<Ventas />} />
 //     </Routes>
 // </Router>
-  );
-}
-
-export default App;
+*/

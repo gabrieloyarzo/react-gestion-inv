@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import "../globals.css";
 import "./sidebar.css";
 import proveedores from "../images/proveedores.png";
@@ -18,14 +17,14 @@ function Sidebar() {
               <img src={proveedores} />
               <h1>Proveedores</h1>
             </a>
-            <NavLink id="ventas"  to="/ventas">
+            <a id="ventas"  href="#">
               <img src={ventas} />
               <h1>Ventas</h1>
-            </NavLink>
-            <NavLink id="productos" to="/productos">
+            </a>
+            <a id="productos" href="#">
               <img src={productos} />
               <h1>Productos</h1>
-            </NavLink>
+            </a>
             <a id="pedidos" href="#">
               <img src={pedidos} />
               <h1>Pedidos</h1>
