@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./formproduct.css";
 
-function FormProduct({ closeForm, modo, productoInicial }) {
+const FormProduct = ({ closeForm, modo, productoInicial }) => {
   const [producto, setProducto] = useState(productoInicial || {
     id: "",
     nombre: "",

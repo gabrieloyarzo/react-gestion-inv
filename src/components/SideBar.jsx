@@ -7,7 +7,7 @@ import productos from "../images/productos.png";
 import pedidos from "../images/pedidos.png";
 
 
-function Sidebar() {
+const Sidebar = () => {
   return (
     <div className="container-menu">
       <div className="cont-menu">

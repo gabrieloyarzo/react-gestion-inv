@@ -2,7 +2,7 @@ import "../globals.css"
 import "./banner.css";
 import logo from "../images/logo.png";
 
-function Home() {
+const Home = () => {
   return (
     <div className="home">
       <a href="../index.html">

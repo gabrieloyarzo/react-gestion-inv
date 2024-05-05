@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./button.css";
 import FormProduct from "./FormProduct";
 
-function Button() {
+const Button = () => {
   const [showForm, setShowForm] = useState(false);
 
   const handleClick = () => {

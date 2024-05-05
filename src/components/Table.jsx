@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import FormProduct from "./FormProduct";
 import "./table.css";
 
-const baseURL = "https://gestion-inv-api.onrender.com/api/producto";
-
-function Table() {
+const Table = () => {
   const [hoveredRow, setHoveredRow] = useState(null);
   const [productoModificar, setProductoModificar] = useState(null);
   const [showForm, setShowForm] = useState(false);
