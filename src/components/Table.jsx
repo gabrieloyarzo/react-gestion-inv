@@ -1,27 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import FormProduct from "./FormProduct";
+import { capitalizeFirstLetter } from "../helpers";
 import "./table.css";
 
-const Table = () => {
+const Table = ( {data} ) => {
   const [hoveredRow, setHoveredRow] = useState(null);
   const [productoModificar, setProductoModificar] = useState(null);
   const [showForm, setShowForm] = useState(false);
-  const [data, setData] = useState([]);
-  
-  const fetchData = async () => {
-    try {
-      const response = await fetch(`${baseURL}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const newData = await response.json();
-      setData(newData);
-    } catch (error) {
-      console.error("Error al obtener datos:", error);
+  const [columns, setColumns] = useState([]);
+
+  useEffect(() => {
+    if (data && data.length > 0) {
+      const keys = Object.keys(data[0]);
+      setColumns(keys);
     }
-  };
+  }, [data]);
 
   const handleClick = () => {
     setShowForm(!showForm);
@@ -36,7 +29,7 @@ const Table = () => {
   };
 
   const handleDelete = async (id) => {
-    const deleteURL = `${baseURL}/${hoveredRow}`;
+    const deleteURL = `https://gestion-inv-api.onrender.com/api/producto/${hoveredRow}`;
 
     const response = await fetch(deleteURL, {
       method: "DELETE",
@@ -64,26 +57,20 @@ const Table = () => {
       <table>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Categoria</th>
-            <th>Stock</th>
-            <th>Precio</th>
+            {columns.map(column => (
+              <th key={column}>{capitalizeFirstLetter(column)}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
-          {data &&
-            data.map((item) => (
-              <tr
-                key={item.id}
+          {data && 
+            data.map((item, index) => (
+              <tr key={index}
                 onMouseEnter={() => handleMouseEnter(item.id)}
                 onMouseLeave={handleMouseLeave}
               >
-                <td>{item.id}</td>
-                <td>{item.nombre}</td>
-                <td>{item.categoria}</td>
-                <td>{item.stock}</td>
-                <td>{item.precio}</td>
+                {columns.map(column => (
+                 <td key={column}>{item[column]}</td>))}
                 <td className="boton-celda">
                   {hoveredRow === item.id && (
                     <div className="boton-contenedor">
@@ -106,5 +93,6 @@ const Table = () => {
     </div>
   );
 }
+
 
 export default Table;

@@ -57,13 +57,13 @@
 }
 
 .boton-eliminar {
-  background: url('/src/components/delete.png') no-repeat;
+  background: url('/src/images/delete.png') no-repeat;
   background-position: center;
   background-size: cover;
 }
 
 .boton-modificar {
-  background: url('/src/components/edit.png') no-repeat;
+  background: url('/src/images/edit.png') no-repeat;
   background-size: cover;
   background-position: center;
 }

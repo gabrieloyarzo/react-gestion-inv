@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./formproduct.css";
 
-const FormProduct = ({ closeForm, modo, productoInicial }) => {
-  const [producto, setProducto] = useState(productoInicial || {
+const FormProduct = ({ closeForm, modo, initialData }) => {
+  const [formData, setFormData] = useState(initialData || {
     id: "",
     nombre: "",
     categoria: "",
@@ -12,8 +12,8 @@ const FormProduct = ({ closeForm, modo, productoInicial }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setProducto({
-      ...producto,
+    setFormData({
+      ...formData,
       [name]: value,
     });
   };
@@ -21,12 +21,12 @@ const FormProduct = ({ closeForm, modo, productoInicial }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let baseURL = "https://gestion-inv-api.onrender.com/api/producto";
+    let baseURL = "https://gestion-inv-api.onrender.com/api/formData";
     let method = 'POST';
 
     if (modo === 'modificar') {
       method = 'PUT';
-      baseURL = `${baseURL}/${productoInicial.id}`
+      baseURL = `${baseURL}/${initialData.id}`
     }
 
     const response = await fetch(`${baseURL}`, {
@@ -34,20 +34,20 @@ const FormProduct = ({ closeForm, modo, productoInicial }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(producto),
+      body: JSON.stringify(formData),
     });
 
     if (response.ok) {
       alert(modo === 'modificar' ? "Producto modificado con éxito" : "Producto registrado con éxito");
       closeForm();
     } else {
-      alert("Hubo un error al registrar o modificar el producto");
+      alert("Hubo un error al registrar o modificar el formData");
     }
   };
 
   return (
     <div style={{ zIndex: 1 }} id="ventana_flotante">
-      <div className="titulo">{modo === 'modificar' ? 'Modificar Producto' : 'Registro de Productos'}</div>
+      <div className="titulo">{modo === 'modificar' ? 'Modificar producto' : 'Registro de Productos'}</div>
       <form onSubmit={handleSubmit}>
         <div className="contenido">
             <div className="fila centrado">
@@ -56,7 +56,7 @@ const FormProduct = ({ closeForm, modo, productoInicial }) => {
                 type="text"
                 className="input"
                 name="id"
-                value={producto.id}   
+                value={formData.id}   
                 onChange={handleChange}
               />
             </div>
@@ -66,7 +66,7 @@ const FormProduct = ({ closeForm, modo, productoInicial }) => {
               type="text"
               className="input"
               name="nombre"
-              value={producto.nombre}
+              value={formData.nombre}
               onChange={handleChange}
             />
           </div>
@@ -76,7 +76,7 @@ const FormProduct = ({ closeForm, modo, productoInicial }) => {
               type="text"
               className="input"
               name="categoria"
-              value={producto.categoria}
+              value={formData.categoria}
               onChange={handleChange}
             />
           </div>
@@ -86,7 +86,7 @@ const FormProduct = ({ closeForm, modo, productoInicial }) => {
               type="text"
               className="input"
               name="stock"
-              value={producto.stock}
+              value={formData.stock}
               onChange={handleChange}
             />
           </div>
@@ -96,7 +96,7 @@ const FormProduct = ({ closeForm, modo, productoInicial }) => {
               type="text"
               className="input"
               name="precio"
-              value={producto.precio}
+              value={formData.precio}
               onChange={handleChange}
             />
           </div>
