@@ -1,6 +1,7 @@
-/*Login todo junto por si el otro no me funciona*/
+/*LOGIN ver. 0.2*/
 
 import './login.css';
+import logo_plus from "../images/logo_plus.png";
 
 const Login = () => {
     return (
@@ -8,7 +9,7 @@ const Login = () => {
           <div className="sombra-azul"></div>
           <div className="izquierda">
             {/*<h1>ERP</h1>*/}
-            <img src="prototipo_logo_cir_justo.png" alt="Imagen" />
+            <img src={logo_plus}/>
           </div>
           <div className="derecha">
             <h1>¡BIENVENIDO!</h1>
