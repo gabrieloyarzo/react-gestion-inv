@@ -10,7 +10,7 @@ body, html {
 .container {
     display: flex;
     height: 100%;
-    min-height: 100vh; /*parcha a altura completa*/
+    min-height: 100vh; /*fix: problema para altura completa*/
 }
 
 .izquierda {
@@ -77,7 +77,7 @@ button {
     border: none;
     cursor: pointer;
     border-radius: 15px;
-    /* box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5); ¿Con sombra?*/
+    
 }
 
 /*color del boton al pasar encima*/
@@ -85,7 +85,7 @@ button:hover {
     background-color: #e0a566;
 }
 
-/* Por ver: ¿Dejar sombra entre lado azul y blanco?*/
+/* Pequeña sombra entre panel izquierdo y panel derecho*/
 .sombra-azul{
   width: 1%; /* Ancho de la sombra */
   background: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)); /* Gradiente para la sombra */
