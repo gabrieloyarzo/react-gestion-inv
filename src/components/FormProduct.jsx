@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ApiService from "../services/apiService";
 import "./formproduct.css";
 
-const FormProduct = ({ closeForm, modo, initialData }) => {
+const FormProduct = ({ mode, closeForm, initialData, fetchData }) => {
   const [formData, setFormData] = useState(
     initialData || {
       id: "",
@@ -24,10 +24,12 @@ const FormProduct = ({ closeForm, modo, initialData }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (modo === "modificar") {
+    if (mode === "modificar") {
       ApiService.updateProduct(initialData.id, formData);
+      fetchData();
     } else {
       ApiService.createProduct(formData);
+      fetchData();
     }
 
     closeForm();
@@ -36,7 +38,7 @@ const FormProduct = ({ closeForm, modo, initialData }) => {
   return (
     <div style={{ zIndex: 1 }} id="ventana_flotante">
       <div className="titulo">
-        {modo === "modificar" ? "Modificar producto" : "Registro de Productos"}
+        {mode === "modificar" ? "Modificar producto" : "Registro de Productos"}
       </div>
       <form onSubmit={handleSubmit}>
         <div className="contenido">
@@ -95,7 +97,7 @@ const FormProduct = ({ closeForm, modo, initialData }) => {
               Cerrar
             </button>
             <button className="guardar-btn" type="submit">
-              {modo === "modificar" ? "Modificar" : "Guardar"}
+              {mode === "modificar" ? "Modificar" : "Guardar"}
             </button>
           </div>
         </div>

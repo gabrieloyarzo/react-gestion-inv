@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from "react";
 import ApiService from "../services/apiService";
 import Banner from "../components/Banner";
-import Button from "../components/Button";
-import Table from "../components/Table";
+import ExtendedTable from "../components/ExtendedTable";
 
 const Productos = () => {
   const [tableData, setTableData] = useState([]);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const productos = await ApiService.getAllProducts();
-        setTableData(productos);
-      } catch (error) {
-        console.error("Error al obtener productos:", error);
-      }
+  const fetchData = async () => {
+    try {
+      const productos = await ApiService.getAllProducts();
+      setTableData(productos);
+    } catch (error) {
+      console.error("Error al obtener productos:", error);
     }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -27,9 +26,7 @@ const Productos = () => {
   return (
     <>
       <Banner />
-      <Table data={tableData} />
-      {/* <FormProduct updateData={updateTableData} /> */}
-      <Button />
+      <ExtendedTable data={tableData} fetchData={fetchData} />
     </>
   );
 };
