@@ -22,11 +22,6 @@
   text-align: center;
 }
 
-.id-celda {
-  font-weight: bold;
-}
-
-
 /* Botones eliminar y modificar */
 .boton-contenedor {
   display: flex;
@@ -39,6 +34,7 @@
 
 .tabla-datos tbody .boton-celda {
   width: 32px; 
+  border: none;
 }
 
 .boton {

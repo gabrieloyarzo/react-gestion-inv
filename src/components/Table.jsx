@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import ApiService from "../services/apiService";
 import FormProduct from "./FormProduct";
 import { capitalizeFirstLetter } from "../helpers";
 import "./table.css";
 
-const Table = ( {data} ) => {
+const Table = ({ data }) => {
   const [hoveredRow, setHoveredRow] = useState(null);
   const [modifyProduct, setModifyProduct] = useState(null);
   const [showForm, setShowForm] = useState(false);
@@ -21,18 +21,6 @@ const Table = ( {data} ) => {
     setShowForm(!showForm);
   };
 
-  const handleMouseEnter = (id) => {
-    setHoveredRow(id);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredRow(null);
-  };
-
-  const handleDelete = async (id) => {
-    ApiService.deleteProduct(id)
-  };
-
   const handleModify = (id) => {
     const modifyProduct = data.find((item) => item.id === id);
     if (modifyProduct) {
@@ -43,30 +31,50 @@ const Table = ( {data} ) => {
     }
   };
 
+  const handleDelete = async (id) => {
+    ApiService.deleteProduct(id);
+  };
+
+  const handleMouseEnter = (id) => {
+    setHoveredRow(id);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredRow(null);
+  };
+
   return (
     <div className="tabla-datos">
       <table>
         <thead>
           <tr>
-            {columns.map(column => (
+            {columns.map((column) => (
               <th key={column}>{capitalizeFirstLetter(column)}</th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {data && 
+          {data &&
             data.map((item, index) => (
-              <tr key={index}
+              <tr
+                key={index}
                 onMouseEnter={() => handleMouseEnter(item.id)}
                 onMouseLeave={handleMouseLeave}
               >
-                {columns.map(column => (
-                 <td key={column}>{item[column]}</td>))}
+                {columns.map((column) => (
+                  <td key={column}>{capitalizeFirstLetter(item[column])}</td>
+                ))}
                 <td className="boton-celda">
                   {hoveredRow === item.id && (
                     <div className="boton-contenedor">
-                      <button className="boton boton-modificar" onClick={() => handleModify(item.id)}></button>
-                      <button className="boton boton-eliminar" onClick={() => handleDelete(item.id)}></button>
+                      <button
+                        className="boton boton-modificar"
+                        onClick={() => handleModify(item.id)}
+                      ></button>
+                      <button
+                        className="boton boton-eliminar"
+                        onClick={() => handleDelete(item.id)}
+                      ></button>
                     </div>
                   )}
                   {showForm && (
@@ -83,7 +91,6 @@ const Table = ( {data} ) => {
       </table>
     </div>
   );
-}
-
+};
 
 export default Table;

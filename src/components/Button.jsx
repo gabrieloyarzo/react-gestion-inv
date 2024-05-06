@@ -11,12 +11,16 @@ const Button = () => {
 
   return (
     <>
-      <div id="boton-flotante" className="material-symbols-outlined" onClick={handleClick}>
+      <div
+        id="boton-flotante"
+        className="material-symbols-outlined"
+        onClick={handleClick}
+      >
         +
       </div>
-      {showForm && <FormProduct closeForm={handleClick}/>}
+      {showForm && <FormProduct closeForm={handleClick} />}
     </>
   );
-}
+};
 
 export default Button;

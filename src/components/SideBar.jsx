@@ -1,11 +1,10 @@
-import React from 'react';
+import React from "react";
 import "../globals.css";
 import "./sidebar.css";
 import proveedores from "../images/proveedores.png";
 import ventas from "../images/ventas.png";
 import productos from "../images/productos.png";
 import pedidos from "../images/pedidos.png";
-
 
 const Sidebar = () => {
   return (
@@ -17,7 +16,7 @@ const Sidebar = () => {
               <img src={proveedores} />
               <h1>Proveedores</h1>
             </a>
-            <a id="ventas"  href="#">
+            <a id="ventas" href="#">
               <img src={ventas} />
               <h1>Ventas</h1>
             </a>
@@ -34,6 +33,6 @@ const Sidebar = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Sidebar;
