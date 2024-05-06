@@ -1,65 +1,55 @@
 import React, { useState } from "react";
+import ApiService from "../services/apiService";
 import "./formproduct.css";
 
 const FormProduct = ({ closeForm, modo, initialData }) => {
-  const [formData, setFormData] = useState(initialData || {
-    id: "",
-    nombre: "",
-    categoria: "",
-    stock: "",
-    precio: "",
-  });
+  const [formData, setFormData] = useState(
+    initialData || {
+      id: "",
+      nombre: "",
+      categoria: "",
+      stock: "",
+      precio: "",
+    }
+  );
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (event) => {
+    const { name, value } = event.target;
     setFormData({
       ...formData,
       [name]: value,
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    let baseURL = "https://gestion-inv-api.onrender.com/api/formData";
-    let method = 'POST';
-
-    if (modo === 'modificar') {
-      method = 'PUT';
-      baseURL = `${baseURL}/${initialData.id}`
-    }
-
-    const response = await fetch(`${baseURL}`, {
-      method: method,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    if (response.ok) {
-      alert(modo === 'modificar' ? "Producto modificado con éxito" : "Producto registrado con éxito");
-      closeForm();
+    if (modo === "modificar") {
+      ApiService.updateProduct(initialData.id, formData);
     } else {
-      alert("Hubo un error al registrar o modificar el formData");
+      ApiService.createProduct(formData);
     }
+
+    closeForm();
   };
 
   return (
     <div style={{ zIndex: 1 }} id="ventana_flotante">
-      <div className="titulo">{modo === 'modificar' ? 'Modificar producto' : 'Registro de Productos'}</div>
+      <div className="titulo">
+        {modo === "modificar" ? "Modificar producto" : "Registro de Productos"}
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="contenido">
-            <div className="fila centrado">
-              <div className="etiqueta">ID del producto:</div>
-              <input
-                type="text"
-                className="input"
-                name="id"
-                value={formData.id}   
-                onChange={handleChange}
-              />
-            </div>
+          <div className="fila centrado">
+            <div className="etiqueta">ID del producto:</div>
+            <input
+              type="text"
+              className="input"
+              name="id"
+              value={formData.id}
+              onChange={handleChange}
+            />
+          </div>
           <div className="fila centrado">
             <div className="etiqueta">Nombre:</div>
             <input
@@ -105,13 +95,13 @@ const FormProduct = ({ closeForm, modo, initialData }) => {
               Cerrar
             </button>
             <button className="guardar-btn" type="submit">
-              {modo === 'modificar' ? 'Modificar' : 'Guardar'}
+              {modo === "modificar" ? "Modificar" : "Guardar"}
             </button>
           </div>
         </div>
       </form>
     </div>
   );
-}
+};
 
 export default FormProduct;

@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react";
+import ApiService from "../services/apiService";
 import FormProduct from "./FormProduct";
 import { capitalizeFirstLetter } from "../helpers";
 import "./table.css";
 
 const Table = ( {data} ) => {
   const [hoveredRow, setHoveredRow] = useState(null);
-  const [productoModificar, setProductoModificar] = useState(null);
+  const [modifyProduct, setModifyProduct] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [columns, setColumns] = useState([]);
 
@@ -29,23 +30,13 @@ const Table = ( {data} ) => {
   };
 
   const handleDelete = async (id) => {
-    const deleteURL = `https://gestion-inv-api.onrender.com/api/producto/${hoveredRow}`;
-
-    const response = await fetch(deleteURL, {
-      method: "DELETE",
-    });
-
-    if (response.ok) {
-      alert(`Tupla con ID ${id} eliminada.`);
-    } else {
-      alert(`Error al eliminar tupla con ID ${id}: ${response.statusText}`);
-    }
+    ApiService.deleteProduct(id)
   };
 
   const handleModify = (id) => {
-    const productoModificar = data.find((item) => item.id === id);
-    if (productoModificar) {
-      setProductoModificar(productoModificar);
+    const modifyProduct = data.find((item) => item.id === id);
+    if (modifyProduct) {
+      setModifyProduct(modifyProduct);
       setShowForm(true);
     } else {
       alert("Producto no encontrado para modificar");
@@ -82,7 +73,7 @@ const Table = ( {data} ) => {
                     <FormProduct
                       closeForm={handleClick}
                       modo="modificar"
-                      productoInicial={productoModificar}
+                      initialData={modifyProduct}
                     />
                   )}
                 </td>

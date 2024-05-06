@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import ApiService from "../services/apiService";
 import Banner from "../components/Banner";
 import Button from "../components/Button";
 import Table from "../components/Table";
@@ -7,22 +8,28 @@ const Productos = () => {
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
-    fetch('https://gestion-inv-api.onrender.com/api/producto')
-      .then(response => response.json())
-      .then(data => setTableData(data))
-      .catch(error => console.error('Error fetching data:', error));
+    async function fetchData() {
+      try {
+        const productos = await ApiService.getAllProducts();
+        setTableData(productos);
+      } catch (error) {
+        console.error("Error al obtener productos:", error);
+      }
+    }
+
+    fetchData();
   }, []);
 
-  const updateTableData = newData => {
+  const updateTableData = (newData) => {
     setTableData(newData);
   };
 
   return (
     <>
-      <Banner/>
+      <Banner />
       <Table data={tableData} />
       {/* <FormProduct updateData={updateTableData} /> */}
-      <Button/>
+      <Button />
     </>
   );
 };

@@ -51,6 +51,24 @@ const ApiService = {
       throw error;
     }
   },
+
+  async deleteProduct(productId) {
+    try {
+      const response = await fetch(`${API_URL}/producto/${productId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Error al eliminar producto");
+      }
+      return await response.json();
+    } catch (error) {
+      console.error("Error al eliminar producto:", error);
+      throw error;
+    }
+  },
 };
 
 export default ApiService;
