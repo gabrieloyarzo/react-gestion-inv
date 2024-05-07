@@ -2,13 +2,15 @@ import React from "react";
 import Sidebar from "./components/SideBar";
 import Productos from "./pages/Productos";
 import Login from "./components/Login";
+import FormPedido from "./components/FormPedido";
 
 const App = () => {
   return (
     <>
-      <Productos />
+      {/* <Productos /> */}
       {/* <Login/> */}
-      <Sidebar />
+      {/* <Sidebar /> */}
+      <FormPedido/>
     </>
   );
 };

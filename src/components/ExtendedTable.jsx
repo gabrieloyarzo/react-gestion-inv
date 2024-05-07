@@ -10,10 +10,10 @@ const ExtendedTable = ({
   updateTuple,
   fetchData,
 }) => {
+  const [columns, setColumns] = useState([]);
   const [hoveredRow, setHoveredRow] = useState(null);
   const [modifyTuple, setModifyTuple] = useState(null);
   const [showModifyForm, setShowModifyForm] = useState(false);
-  const [columns, setColumns] = useState([]);
   const [showFormCreate, setShowFormCreate] = useState(false);
 
   useEffect(() => {
