@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./formpedido.css";
 
 const FormPedido = ({
@@ -9,8 +9,40 @@ const FormPedido = ({
   initialData,
   fetchData,
 }) => {
+  const [formData, setFormData] = useState(
+    initialData || {
+      id_pedido: "",
+      rut_proveedor: "",
+      rut_usuario: "",
+      fecha: "",
+      compra_total: "",
+    }
+  );
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (mode === "modificar") {
+      updateTuple(initialData.id, formData);
+      fetchData();
+    } else {
+      createTuple(formData);
+      fetchData();
+    }
+
+    closeForm();
+  };
+
   return (
-    <div id="ventana_flotante">
+    <div style={{ zIndex: 1 }} id="ventana_flotante">
       <div className="titulo">
         {mode === "modificar" ? "Modificar Pedido" : "Registro de Pedido"}
       </div>

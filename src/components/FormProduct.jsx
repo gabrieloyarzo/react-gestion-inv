@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import "./formproduct.css";
 
-const FormProduct = ({ createTuple, updateTuple, mode, closeForm, initialData, fetchData }) => {
+const FormProduct = ({
+  createTuple,
+  updateTuple,
+  mode,
+  closeForm,
+  initialData,
+  fetchData,
+}) => {
   const [formData, setFormData] = useState(
     initialData || {
       id: "",
