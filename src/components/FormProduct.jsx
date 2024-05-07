@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import ApiService from "../services/apiService";
 import "./formproduct.css";
 
-const FormProduct = ({ mode, closeForm, initialData, fetchData }) => {
+const FormProduct = ({ createTuple, updateTuple, mode, closeForm, initialData, fetchData }) => {
   const [formData, setFormData] = useState(
     initialData || {
       id: "",
@@ -25,10 +24,10 @@ const FormProduct = ({ mode, closeForm, initialData, fetchData }) => {
     event.preventDefault();
 
     if (mode === "modificar") {
-      ApiService.updateProduct(initialData.id, formData);
+      updateTuple(initialData.id, formData);
       fetchData();
     } else {
-      ApiService.createProduct(formData);
+      createTuple(formData);
       fetchData();
     }
 

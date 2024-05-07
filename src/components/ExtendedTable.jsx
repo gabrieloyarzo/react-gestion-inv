@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
-import ApiService from "../services/apiService";
 import FormProduct from "./FormProduct";
 import { capitalizeFirstLetter } from "../helpers";
 import "./extendedtable.css";
 
-const ExtendedTable = ({ data, fetchData }) => {
+const ExtendedTable = ({
+  data,
+  deleteTuple,
+  createTuple,
+  updateTuple,
+  fetchData,
+}) => {
   const [hoveredRow, setHoveredRow] = useState(null);
-  const [modifyProduct, setModifyProduct] = useState(null);
+  const [modifyTuple, setModifyTuple] = useState(null);
   const [showModifyForm, setShowModifyForm] = useState(false);
   const [columns, setColumns] = useState([]);
   const [showFormCreate, setShowFormCreate] = useState(false);
@@ -27,17 +32,15 @@ const ExtendedTable = ({ data, fetchData }) => {
   };
 
   const handleModify = (id) => {
-    const modifyProduct = data.find((item) => item.id === id);
-    if (modifyProduct) {
-      setModifyProduct(modifyProduct);
+    const modifyTuple = data.find((item) => item.id === id);
+    if (modifyTuple) {
+      setModifyTuple(modifyTuple);
       setShowModifyForm(true);
-    } else {
-      alert("Producto no encontrado para modificar");
     }
   };
 
-  const handleDelete = async (id) => {
-    ApiService.deleteProduct(id);
+  const handleDelete = (id) => {
+    deleteTuple(id);
     fetchData();
   };
 
@@ -88,8 +91,9 @@ const ExtendedTable = ({ data, fetchData }) => {
                       <FormProduct
                         closeForm={handleModifyForm}
                         modo="modificar"
-                        initialData={modifyProduct}
+                        initialData={modifyTuple}
                         fetchData={fetchData}
+                        updateTuple={updateTuple}
                       />
                     )}
                   </td>
@@ -106,7 +110,11 @@ const ExtendedTable = ({ data, fetchData }) => {
         +
       </div>
       {showFormCreate && (
-        <FormProduct closeForm={handleCreateForm} fetchData={fetchData} />
+        <FormProduct
+          closeForm={handleCreateForm}
+          fetchData={fetchData}
+          createTuple={createTuple}
+        />
       )}
     </>
   );
