@@ -14,14 +14,3 @@ const App = () => {
 }
 
 export default App;
-
-/*
-//     <Router>
-//     <Sidebar />
-//     <Routes>
-//         <Route exact path="/" element={<Home />} />
-//         <Route path="/productos" element={<Productos />} />
-//         <Route path="/ventas" element={<Ventas />} />
-//     </Routes>
-// </Router>
-*/
