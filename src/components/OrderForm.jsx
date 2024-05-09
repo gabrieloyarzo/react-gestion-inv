@@ -30,12 +30,10 @@ const FormPedido = ({
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (mode === "modificar") {
+    if (mode === "modify") {
       updateTuple(initialData.id, formData);
-      fetchData();
     } else {
       createTuple(formData);
-      fetchData();
     }
 
     closeForm();

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ApiService from "../services/apiService";
+import { ApiProducts } from "../services/apiService";
 import Banner from "../components/Banner";
 import ExtendedTable from "../components/ExtendedTable";
 
@@ -30,9 +30,9 @@ const Productos = () => {
         currentTable="productos"
         data={tableData}
         fetchData={fetchData}
-        deleteTuple={ApiService.deleteProduct}
-        createTuple={ApiService.createProduct}
-        updateTuple={ApiService.updateProduct}
+        deleteTuple={ApiProducts.deleteProduct}
+        createTuple={ApiProducts.createProduct}
+        updateTuple={ApiProducts.updateProduct}
       />
     </>
   );

@@ -1,6 +1,6 @@
 const API_URL = "https://gestion-inv-api.onrender.com/api";
 
-const ApiService = {
+export const ApiProducts = {
   async getAllProducts() {
     try {
       const response = await fetch(`${API_URL}/producto`);
@@ -70,5 +70,3 @@ const ApiService = {
     }
   },
 };
-
-export default ApiService;
