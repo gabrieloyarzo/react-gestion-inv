@@ -26,7 +26,14 @@ const Productos = () => {
   return (
     <>
       <Banner />
-      <ExtendedTable data={tableData} fetchData={fetchData} deleteTuple={ApiService.deleteProduct} createTuple={ApiService.createProduct} updateTuple={ApiService.updateProduct} />
+      <ExtendedTable
+        currentTable="productos"
+        data={tableData}
+        fetchData={fetchData}
+        deleteTuple={ApiService.deleteProduct}
+        createTuple={ApiService.createProduct}
+        updateTuple={ApiService.updateProduct}
+      />
     </>
   );
 };

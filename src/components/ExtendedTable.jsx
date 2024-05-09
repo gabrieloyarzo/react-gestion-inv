@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { capitalizeFirstLetter } from "../helpers";
+import { capitalizeFirstLetter } from "../functions/helpers";
 import "./extendedtable.css";
 import ProductForm from "./ProductForm";
 import OrderForm from "./OrderForm";
@@ -15,23 +15,16 @@ const ExtendedTable = ({
   const [columns, setColumns] = useState([]);
   const [hoveredRow, setHoveredRow] = useState(null);
   const [modifyTuple, setModifyTuple] = useState(null);
-  const [showModifyForm, setShowModifyForm] = useState(false);
-  const [showFormCreate, setShowFormCreate] = useState(false);
+  const [formAction, setFormAction] = useState(null);
+  const [showForm, setShowForm] = useState(false);
 
-  const handleModifyForm = () => {
-    setShowModifyForm(!showModifyForm);
-  };
-
-  const handleCreateForm = () => {
-    setShowFormCreate(!showFormCreate);
+  const handleShowForm = () => {
+    setShowForm(!showForm);
   };
 
   const handleModify = (id) => {
     const modifyTuple = data.find((item) => item.id === id);
-    if (modifyTuple) {
-      setModifyTuple(modifyTuple);
-      setShowModifyForm(true);
-    }
+    setModifyTuple(modifyTuple);
   };
 
   const handleDelete = (id) => {
@@ -53,12 +46,12 @@ const ExtendedTable = ({
     }
   }, [data]);
 
-  const renderForm = () => {
+  const renderForm = (formProps) => {
     switch (currentTable) {
       case "productos":
-        return <ProductForm />;
+        return <ProductForm {...formProps} />;
       case "pedidos":
-        return <OrderForm />;
+        return <OrderForm {...formProps} />;
       default:
         return null;
     }
@@ -91,22 +84,17 @@ const ExtendedTable = ({
                       <div className="boton-contenedor">
                         <button
                           className="boton boton-modificar"
-                          onClick={() => handleModify(item.id)}
+                          onClick={() => {
+                            setFormAction("modify");
+                            handleModify(item.id);
+                            handleShowForm();
+                          }}
                         ></button>
                         <button
                           className="boton boton-eliminar"
                           onClick={() => handleDelete(item.id)}
                         ></button>
                       </div>
-                    )}
-                    {showModifyForm && (
-                      <ProductForm
-                        closeForm={handleModifyForm}
-                        modo="modificar"
-                        initialData={modifyTuple}
-                        fetchData={fetchData}
-                        updateTuple={updateTuple}
-                      />
                     )}
                   </td>
                 </tr>
@@ -117,17 +105,22 @@ const ExtendedTable = ({
       <div
         id="boton-flotante"
         className="material-symbols-outlined"
-        onClick={handleCreateForm}
+        onClick={() => {
+          setFormAction("create");
+          handleShowForm();
+        }}
       >
         +
       </div>
-      {showFormCreate && (
-        <ProductForm
-          closeForm={handleCreateForm}
-          fetchData={fetchData}
-          createTuple={createTuple}
-        />
-      )}
+      {showForm &&
+        renderForm({
+          closeForm: handleShowForm,
+          initialData: modifyTuple,
+          deleteTuple: deleteTuple,
+          createTuple: createTuple,
+          updateTuple: updateTuple,
+          fetchData: fetchData,
+        })}
     </>
   );
 };

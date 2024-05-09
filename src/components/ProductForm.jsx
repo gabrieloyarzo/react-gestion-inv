@@ -30,12 +30,10 @@ const FormProduct = ({
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (mode === "modificar") {
+    if (mode === "modify") {
       updateTuple(initialData.id, formData);
-      fetchData();
     } else {
       createTuple(formData);
-      fetchData();
     }
 
     closeForm();
@@ -44,7 +42,7 @@ const FormProduct = ({
   return (
     <div style={{ zIndex: 1 }} id="ventana_flotante">
       <div className="titulo">
-        {mode === "modificar" ? "Modificar producto" : "Registro de Productos"}
+        {mode === "modify" ? "Modificar producto" : "Registro de Productos"}
       </div>
       <form onSubmit={handleSubmit}>
         <div className="contenido">
@@ -103,7 +101,7 @@ const FormProduct = ({
               Cerrar
             </button>
             <button className="guardar-btn" type="submit">
-              {mode === "modificar" ? "Modificar" : "Guardar"}
+              {mode === "modify" ? "Modificar" : "Guardar"}
             </button>
           </div>
         </div>
