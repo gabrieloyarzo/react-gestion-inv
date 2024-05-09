@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from "./components/SideBar";
 import Productos from "./pages/Productos";
 import Login from "./components/Login";
-import FormPedido from "./components/FormPedido";
+import OrderForm from "./components/OrderForm";
 
 const App = () => {
   return (
@@ -10,7 +10,7 @@ const App = () => {
       {/* <Productos /> */}
       {/* <Login/> */}
       {/* <Sidebar /> */}
-      <FormPedido/>
+      <OrderForm/>
     </>
   );
 };

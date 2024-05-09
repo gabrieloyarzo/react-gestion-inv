@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./formproduct.css";
+import "./productform.css";
 
 const FormProduct = ({
   createTuple,

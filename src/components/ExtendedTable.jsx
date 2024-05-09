@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import FormProduct from "./FormProduct";
 import { capitalizeFirstLetter } from "../helpers";
 import "./extendedtable.css";
+import ProductForm from "./ProductForm";
+import OrderForm from "./OrderForm";
 
 const ExtendedTable = ({
+  currentTable,
   data,
   deleteTuple,
   createTuple,
@@ -15,13 +17,6 @@ const ExtendedTable = ({
   const [modifyTuple, setModifyTuple] = useState(null);
   const [showModifyForm, setShowModifyForm] = useState(false);
   const [showFormCreate, setShowFormCreate] = useState(false);
-
-  useEffect(() => {
-    if (data && data.length > 0) {
-      const keys = Object.keys(data[0]);
-      setColumns(keys);
-    }
-  }, [data]);
 
   const handleModifyForm = () => {
     setShowModifyForm(!showModifyForm);
@@ -41,7 +36,6 @@ const ExtendedTable = ({
 
   const handleDelete = (id) => {
     deleteTuple(id);
-    fetchData();
   };
 
   const handleMouseEnter = (id) => {
@@ -50,6 +44,24 @@ const ExtendedTable = ({
 
   const handleMouseLeave = () => {
     setHoveredRow(null);
+  };
+
+  useEffect(() => {
+    if (data && data.length > 0) {
+      const keys = Object.keys(data[0]);
+      setColumns(keys);
+    }
+  }, [data]);
+
+  const renderForm = () => {
+    switch (currentTable) {
+      case "productos":
+        return <ProductForm />;
+      case "pedidos":
+        return <OrderForm />;
+      default:
+        return null;
+    }
   };
 
   return (
@@ -88,7 +100,7 @@ const ExtendedTable = ({
                       </div>
                     )}
                     {showModifyForm && (
-                      <FormProduct
+                      <ProductForm
                         closeForm={handleModifyForm}
                         modo="modificar"
                         initialData={modifyTuple}
@@ -110,7 +122,7 @@ const ExtendedTable = ({
         +
       </div>
       {showFormCreate && (
-        <FormProduct
+        <ProductForm
           closeForm={handleCreateForm}
           fetchData={fetchData}
           createTuple={createTuple}
