@@ -114,6 +114,7 @@ const ExtendedTable = ({
       </div>
       {showForm &&
         renderForm({
+          mode: formAction,
           closeForm: handleShowForm,
           initialData: modifyTuple,
           deleteTuple: deleteTuple,
