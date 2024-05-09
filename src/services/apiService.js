@@ -87,7 +87,7 @@ export const ApiOrders = {
 
   async createOrder(orderData) {
     try {
-      const response = await fetch(`${API_URL}/order`, {
+      const response = await fetch(`${API_URL}/pedido`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
