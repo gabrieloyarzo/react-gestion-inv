@@ -8,7 +8,7 @@ const Productos = () => {
 
   const fetchData = async () => {
     try {
-      const productos = await ApiService.getAllProducts();
+      const productos = await ApiProducts.getAllProducts();
       setTableData(productos);
     } catch (error) {
       console.error("Error al obtener productos:", error);
