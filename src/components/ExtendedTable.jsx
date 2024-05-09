@@ -18,6 +18,21 @@ const ExtendedTable = ({
   const [formAction, setFormAction] = useState(null);
   const [showForm, setShowForm] = useState(false);
 
+  useEffect(() => {
+    if (data && data.length > 0) {
+      const keys = Object.keys(data[0]);
+      setColumns(keys);
+    }
+  }, [data]);
+
+  const handleMouseEnter = (id) => {
+    setHoveredRow(id);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredRow(null);
+  };
+
   const handleShowForm = () => {
     setShowForm(!showForm);
   };
@@ -30,21 +45,6 @@ const ExtendedTable = ({
   const handleDelete = (id) => {
     deleteTuple(id);
   };
-
-  const handleMouseEnter = (id) => {
-    setHoveredRow(id);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredRow(null);
-  };
-
-  useEffect(() => {
-    if (data && data.length > 0) {
-      const keys = Object.keys(data[0]);
-      setColumns(keys);
-    }
-  }, [data]);
 
   const renderForm = (formProps) => {
     switch (currentTable) {
