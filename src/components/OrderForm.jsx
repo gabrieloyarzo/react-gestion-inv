@@ -40,7 +40,7 @@ const FormPedido = ({
   };
 
   return (
-    <div style={{ zIndex: 1 }} id="ventana_flotante">
+    <form style={{ zIndex: 1 }} id="ventana_flotante" onSubmit={handleSubmit}>
       <div className="titulo">
         {mode === "modificar" ? "Modificar Pedido" : "Registro de Pedido"}
       </div>
@@ -77,12 +77,14 @@ const FormPedido = ({
         </div>
       </div>
       <div className="boton-opciones">
-        <button className="cerrar-btn" onclick="cerrarVentana()">
+        <button className="cerrar-btn" onClick={closeForm}>
           Cerrar
         </button>
-        <button className="guardar-btn">Guardar</button>
+        <button className="guardar-btn" type="submit">
+          {mode === "modify" ? "Modificar" : "Guardar"}
+        </button>
       </div>
-    </div>
+    </form>
   );
 };
 

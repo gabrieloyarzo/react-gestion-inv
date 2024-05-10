@@ -14,6 +14,19 @@ export const ApiProducts = {
     }
   },
 
+  async getProduct(productId) {
+    try {
+      const response = await fetch(`${API_URL}/producto/${productId}`);
+      if (!response.ok) {
+        throw new Error("Error al obtener producto");
+      }
+      return await response.json();
+    } catch (error) {
+      console.error("Error al obtener producto:", error);
+      throw error;
+    }
+  },
+
   async createProduct(productData) {
     try {
       const response = await fetch(`${API_URL}/producto`, {
@@ -81,6 +94,19 @@ export const ApiOrders = {
       return await response.json();
     } catch (error) {
       console.error("Error al obtener pedidos:", error);
+      throw error;
+    }
+  },
+
+  async getOrder(orderId) {
+    try {
+      const response = await fetch(`${API_URL}/pedido/${orderId}`);
+      if (!response.ok) {
+        throw new Error("Error al obtener pedido");
+      }
+      return await response.json();
+    } catch (error) {
+      console.error("Error al obtener pedido:", error);
       throw error;
     }
   },
