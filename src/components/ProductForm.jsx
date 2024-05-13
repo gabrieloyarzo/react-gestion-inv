@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./productform.css";
 
-const FormProduct = ({
+const ProductForm = ({
   createTuple,
   updateTuple,
   mode,
@@ -121,4 +121,4 @@ const FormProduct = ({
   );
 };
 
-export default FormProduct;
+export default ProductForm;

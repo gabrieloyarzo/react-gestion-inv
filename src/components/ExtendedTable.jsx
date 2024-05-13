@@ -3,7 +3,6 @@ import { capitalizeFirstLetter } from "../functions/helpers";
 import "./extendedtable.css";
 import ProductForm from "./ProductForm";
 import OrderForm from "./OrderForm";
-import FormPedido from "./OrderForm";
 
 const ExtendedTable = ({
   currentTable,

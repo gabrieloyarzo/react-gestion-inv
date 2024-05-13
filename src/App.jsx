@@ -8,7 +8,8 @@ import SalesForm from "./components/SalesForm";
 const App = () => {
   return (
     <>
-      <SalesForm/>
+      <Productos />
+      <Sidebar />
     </>
   );
 };
