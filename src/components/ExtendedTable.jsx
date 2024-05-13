@@ -17,11 +17,14 @@ const ExtendedTable = ({
   const [modifyTuple, setModifyTuple] = useState(null);
   const [formAction, setFormAction] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const [formFields, setFormFields] = useState([]);
 
   useEffect(() => {
     if (data && data.length > 0) {
       const keys = Object.keys(data[0]);
+      const fields = keys.map((key) => ({ name: key, label: capitalizeFirstLetter(key), type: 'text' }));
       setColumns(keys);
+      setFormFields(fields);
     }
   }, [data]);
 
@@ -121,6 +124,7 @@ const ExtendedTable = ({
           createTuple: createTuple,
           updateTuple: updateTuple,
           fetchData: fetchData,
+          formFields: formFields,
         })}
     </>
   );

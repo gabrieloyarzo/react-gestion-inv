@@ -1,23 +1,17 @@
 import React, { useState } from "react";
+import { capitalizeFirstLetter } from "../functions/helpers";
 import "./productform.css";
 
-const FormProduct = ({
+const ProductForm = ({
   createTuple,
   updateTuple,
   mode,
   closeForm,
   initialData,
   fetchData,
+  formFields,
 }) => {
-  const [formData, setFormData] = useState(
-    initialData || {
-      id: "",
-      nombre: "",
-      categoria: "",
-      stock: "",
-      precio: "",
-    }
-  );
+  const [formData, setFormData] = useState(initialData || {});
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -46,56 +40,18 @@ const FormProduct = ({
       </div>
       <form onSubmit={handleSubmit}>
         <div className="contenido">
-          <div className="fila centrado">
-            <div className="etiqueta">ID del producto:</div>
-            <input
-              type="text"
-              className="input"
-              name="id"
-              value={formData.id}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="fila centrado">
-            <div className="etiqueta">Nombre:</div>
-            <input
-              type="text"
-              className="input"
-              name="nombre"
-              value={formData.nombre}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="fila centrado">
-            <div className="etiqueta">Categoría:</div>
-            <input
-              type="text"
-              className="input"
-              name="categoria"
-              value={formData.categoria}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="fila centrado">
-            <div className="etiqueta">Stock:</div>
-            <input
-              type="text"
-              className="input"
-              name="stock"
-              value={formData.stock}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="fila centrado">
-            <div className="etiqueta">Precio:</div>
-            <input
-              type="text"
-              className="input"
-              name="precio"
-              value={formData.precio}
-              onChange={handleChange}
-            />
-          </div>
+          {formFields.map((field) => (
+            <div className="fila centrado" key={field.name}>
+              <div className="etiqueta">{capitalizeFirstLetter(field.label)}:</div>
+              <input
+                type={field.type}
+                className="input"
+                name={field.name}
+                value={formData[field.name] || ''}
+                onChange={handleChange}
+              />
+            </div>
+          ))}
           <div className="opciones">
             <button className="cerrar-btn" onClick={closeForm}>
               Cerrar
@@ -110,4 +66,4 @@ const FormProduct = ({
   );
 };
 
-export default FormProduct;
+export default ProductForm;
