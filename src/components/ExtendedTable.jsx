@@ -38,7 +38,7 @@ const ExtendedTable = ({
   };
 
   const handleModify = (id) => {
-    const modifyTuple = data.find((item) => item.id === id);
+    const modifyTuple = data.find((item) => item.id_producto === id);
     setModifyTuple(modifyTuple);
   };
 
@@ -73,26 +73,27 @@ const ExtendedTable = ({
               data.map((item, index) => (
                 <tr
                   key={index}
-                  onMouseEnter={() => handleMouseEnter(item.id)}
+                  onMouseEnter={() => handleMouseEnter(item.id_producto)}
                   onMouseLeave={handleMouseLeave}
                 >
                   {columns.map((column) => (
-                    <td key={column}>{capitalizeFirstLetter(item[column])}</td>
+                    <td key={column}
+                    >{capitalizeFirstLetter(item[column])}</td>
                   ))}
                   <td className="boton-celda">
-                    {hoveredRow === item.id && (
+                    {hoveredRow === item.id_producto && (
                       <div className="boton-contenedor">
                         <button
                           className="boton boton-modificar"
                           onClick={() => {
                             setFormAction("modify");
-                            handleModify(item.id);
+                            handleModify(item.id_producto);
                             handleShowForm();
                           }}
                         ></button>
                         <button
                           className="boton boton-eliminar"
-                          onClick={() => handleDelete(item.id)}
+                          onClick={() => handleDelete(item.id_producto)}
                         ></button>
                       </div>
                     )}
