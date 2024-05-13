@@ -16,7 +16,7 @@ const ProductForm = ({
       categoria: "",
       cantidad: "",
       min_cantidad: "",
-      precio_precio: "",
+      precio_venta: "",
     }
   );
 
@@ -32,7 +32,7 @@ const ProductForm = ({
     event.preventDefault();
 
     if (mode === "modify") {
-      updateTuple(initialData.id, formData);
+      updateTuple(initialData.id_producto, formData);
     } else {
       createTuple(formData);
     }
@@ -102,7 +102,7 @@ const ProductForm = ({
             <input
               type="text"
               className="input"
-              name="precio"
+              name="precio_venta"
               value={formData.precio_venta}
               onChange={handleChange}
             />
