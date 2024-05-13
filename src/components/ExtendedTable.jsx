@@ -4,7 +4,6 @@ import "./extendedtable.css";
 import ProductForm from "./ProductForm";
 import OrderForm from "./OrderForm";
 
-
 const IndexTable = ({ data }) => {
   const [primaryKey, setPrimaryKey] = useState(null);
   const [columns, setColumns] = useState([]);
@@ -20,7 +19,73 @@ const IndexTable = ({ data }) => {
   return { columns, primaryKey };
 };
 
+const LoadedTuples = ({
+  data,
+  columns,
+  primaryKey,
+  handleAction,
+  handleModify,
+  handleShowForm,
+  handleDelete,
+}) => {
+  const [hoveredRow, setHoveredRow] = useState(null);
 
+  const handleMouseEnter = (id) => {
+    setHoveredRow(id);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredRow(null);
+  };
+
+  return data.map((item, index) => (
+    <tr
+      key={index}
+      onMouseEnter={() => handleMouseEnter(item[primaryKey])}
+      onMouseLeave={handleMouseLeave}
+    >
+      {columns.map((column) => (
+        <td key={column}>{capitalizeFirstLetter(item[column])}</td>
+      ))}
+      <td className="boton-celda">
+        {hoveredRow === item[primaryKey] && (
+          <TupleButtons
+            handleAction={handleAction}
+            handleModify={handleModify}
+            handleShowForm={handleShowForm}
+            handleDelete={handleDelete}
+            id={item[primaryKey]}
+          />
+        )}
+      </td>
+    </tr>
+  ));
+};
+
+const TupleButtons = ({
+  handleAction,
+  handleModify,
+  handleShowForm,
+  handleDelete,
+  id,
+}) => {
+  return (
+    <div className="boton-contenedor">
+      <button
+        className="boton boton-modificar"
+        onClick={() => {
+          handleAction("modify");
+          handleModify(id);
+          handleShowForm();
+        }}
+      ></button>
+      <button
+        className="boton boton-eliminar"
+        onClick={() => handleDelete(id)}
+      ></button>
+    </div>
+  );
+};
 
 const ExtendedTable = ({
   currentTable,
@@ -30,20 +95,11 @@ const ExtendedTable = ({
   updateTuple,
   fetchData,
 }) => {
-  const [hoveredRow, setHoveredRow] = useState(null);
   const [modifyTuple, setModifyTuple] = useState(null);
   const [formAction, setFormAction] = useState(null);
   const [showForm, setShowForm] = useState(false);
 
   const { columns, primaryKey } = IndexTable({ data });
-
-  const handleMouseEnter = (id) => {
-    setHoveredRow(id);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredRow(null);
-  };
 
   const handleShowForm = () => {
     setShowForm(!showForm);
@@ -56,6 +112,10 @@ const ExtendedTable = ({
 
   const handleDelete = (id) => {
     deleteTuple(id);
+  };
+
+  const handleFormAction = (arg) => {
+    setFormAction(arg);
   };
 
   const renderForm = (formProps) => {
@@ -81,36 +141,17 @@ const ExtendedTable = ({
             </tr>
           </thead>
           <tbody>
-            {data &&
-              data.map((item, index) => (
-                <tr
-                  key={index}
-                  onMouseEnter={() => handleMouseEnter(item[primaryKey])}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  {columns.map((column) => (
-                    <td key={column}>{capitalizeFirstLetter(item[column])}</td>
-                  ))}
-                  <td className="boton-celda">
-                    {hoveredRow === item[primaryKey] && (
-                      <div className="boton-contenedor">
-                        <button
-                          className="boton boton-modificar"
-                          onClick={() => {
-                            setFormAction("modify");
-                            handleModify(item[primaryKey]);
-                            handleShowForm();
-                          }}
-                        ></button>
-                        <button
-                          className="boton boton-eliminar"
-                          onClick={() => handleDelete(item[primaryKey])}
-                        ></button>
-                      </div>
-                    )}
-                  </td>
-                </tr>
-              ))}
+            {data && (
+              <LoadedTuples
+                data={data}
+                columns={columns}
+                primaryKey={primaryKey}
+                handleAction={handleFormAction}
+                handleModify={handleModify}
+                handleShowForm={handleShowForm}
+                handleDelete={handleDelete}
+              />
+            )}
           </tbody>
         </table>
       </div>
