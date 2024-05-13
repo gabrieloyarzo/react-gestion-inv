@@ -17,10 +17,12 @@ const ExtendedTable = ({
   const [modifyTuple, setModifyTuple] = useState(null);
   const [formAction, setFormAction] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const [primaryKey, setPrimaryKey] = useState(null);
 
   useEffect(() => {
     if (data && data.length > 0) {
       const keys = Object.keys(data[0]);
+      setPrimaryKey(Object.keys(data[0])[0]);
       setColumns(keys);
     }
   }, [data]);
@@ -38,7 +40,7 @@ const ExtendedTable = ({
   };
 
   const handleModify = (id) => {
-    const modifyTuple = data.find((item) => item.id_producto === id);
+    const modifyTuple = data.find((item) => item[primaryKey] === id);
     setModifyTuple(modifyTuple);
   };
 
@@ -73,27 +75,26 @@ const ExtendedTable = ({
               data.map((item, index) => (
                 <tr
                   key={index}
-                  onMouseEnter={() => handleMouseEnter(item.id_producto)}
+                  onMouseEnter={() => handleMouseEnter(item[primaryKey])}
                   onMouseLeave={handleMouseLeave}
                 >
                   {columns.map((column) => (
-                    <td key={column}
-                    >{capitalizeFirstLetter(item[column])}</td>
+                    <td key={column}>{capitalizeFirstLetter(item[column])}</td>
                   ))}
                   <td className="boton-celda">
-                    {hoveredRow === item.id_producto && (
+                    {hoveredRow === item[primaryKey] && (
                       <div className="boton-contenedor">
                         <button
                           className="boton boton-modificar"
                           onClick={() => {
                             setFormAction("modify");
-                            handleModify(item.id_producto);
+                            handleModify(item[primaryKey]);
                             handleShowForm();
                           }}
                         ></button>
                         <button
                           className="boton boton-eliminar"
-                          onClick={() => handleDelete(item.id_producto)}
+                          onClick={() => handleDelete(item[primaryKey])}
                         ></button>
                       </div>
                     )}
