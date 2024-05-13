@@ -12,8 +12,8 @@ const Login = () => {
         <img src={logo_plus} />
       </div>
       <div className="derecha">
-        <h1>¡BIENVENIDO!</h1>
-        <h2>Accede a tu cuenta</h2>
+        <h3>¡BIENVENIDO!</h3>
+        <h4>Accede a tu cuenta</h4>
         <form action="#" method="post">
           <input type="text" placeholder="Usuario" name="usuario" required />
           <input

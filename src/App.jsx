@@ -7,9 +7,9 @@ import OrderForm from "./components/OrderForm";
 const App = () => {
   return (
     <>
-      <Productos />
-      <Sidebar />
-      {/* <Login/> */}
+      {/*<Productos />*/}
+      {/*<Sidebar />*/}
+      <Login/>
     </>
   );
 };
