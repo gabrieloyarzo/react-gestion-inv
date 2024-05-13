@@ -4,20 +4,10 @@ import "./extendedtable.css";
 import ProductForm from "./ProductForm";
 import OrderForm from "./OrderForm";
 
-const ExtendedTable = ({
-  currentTable,
-  data,
-  deleteTuple,
-  createTuple,
-  updateTuple,
-  fetchData,
-}) => {
-  const [columns, setColumns] = useState([]);
-  const [hoveredRow, setHoveredRow] = useState(null);
-  const [modifyTuple, setModifyTuple] = useState(null);
-  const [formAction, setFormAction] = useState(null);
-  const [showForm, setShowForm] = useState(false);
+
+const IndexTable = ({ data }) => {
   const [primaryKey, setPrimaryKey] = useState(null);
+  const [columns, setColumns] = useState([]);
 
   useEffect(() => {
     if (data && data.length > 0) {
@@ -26,6 +16,26 @@ const ExtendedTable = ({
       setColumns(keys);
     }
   }, [data]);
+
+  return { columns, primaryKey };
+};
+
+
+
+const ExtendedTable = ({
+  currentTable,
+  data,
+  deleteTuple,
+  createTuple,
+  updateTuple,
+  fetchData,
+}) => {
+  const [hoveredRow, setHoveredRow] = useState(null);
+  const [modifyTuple, setModifyTuple] = useState(null);
+  const [formAction, setFormAction] = useState(null);
+  const [showForm, setShowForm] = useState(false);
+
+  const { columns, primaryKey } = IndexTable({ data });
 
   const handleMouseEnter = (id) => {
     setHoveredRow(id);
