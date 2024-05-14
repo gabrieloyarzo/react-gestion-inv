@@ -110,10 +110,6 @@ const ExtendedTable = ({
     setModifyTuple(modifyTuple);
   };
 
-  const handleDelete = (id) => {
-    deleteTuple(id);
-  };
-
   const handleFormAction = (arg) => {
     setFormAction(arg);
   };
@@ -149,7 +145,7 @@ const ExtendedTable = ({
                 handleAction={handleFormAction}
                 handleModify={handleModify}
                 handleShowForm={handleShowForm}
-                handleDelete={handleDelete}
+                handleDelete={deleteTuple}
               />
             )}
           </tbody>
@@ -170,7 +166,6 @@ const ExtendedTable = ({
           mode: formAction,
           closeForm: handleShowForm,
           initialData: modifyTuple,
-          deleteTuple: deleteTuple,
           createTuple: createTuple,
           updateTuple: updateTuple,
           fetchData: fetchData,
