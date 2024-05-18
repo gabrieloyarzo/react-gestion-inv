@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./productform.css";
 
-const FormProduct = ({
+const ProductForm = ({
   createTuple,
   updateTuple,
   mode,
@@ -16,7 +16,7 @@ const FormProduct = ({
       categoria: "",
       cantidad: "",
       min_cantidad: "",
-      precio_precio: "",
+      precio_venta: "",
     }
   );
 
@@ -32,7 +32,7 @@ const FormProduct = ({
     event.preventDefault();
 
     if (mode === "modify") {
-      updateTuple(initialData.id, formData);
+      updateTuple(initialData.id_producto, formData);
     } else {
       createTuple(formData);
     }
@@ -102,7 +102,7 @@ const FormProduct = ({
             <input
               type="text"
               className="input"
-              name="precio"
+              name="precio_venta"
               value={formData.precio_venta}
               onChange={handleChange}
             />
@@ -121,4 +121,4 @@ const FormProduct = ({
   );
 };
 
-export default FormProduct;
+export default ProductForm;

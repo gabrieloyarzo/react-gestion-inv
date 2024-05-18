@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./Salesform.css";
+import "./salesform.css";
 
-const FormSales = ({
+const FormVenta = ({
   createTuple,
   updateTuple,
   mode,
@@ -11,11 +11,10 @@ const FormSales = ({
 }) => {
   const [formData, setFormData] = useState(
     initialData || {
-      rut_cliente: "",
-      id_producto: "",
-      categoria: "",
-      cantidad: "",
-      precio_precio: "",
+      id_Venta: "",
+      rut_Cliente: "",
+      fecha: "",
+      compra_total: "",
     }
   );
 
@@ -47,10 +46,10 @@ const FormSales = ({
       <div className="contenido">
         <div className="fila centrado">
           <div className="etiqueta">RUT del Cliente:</div>
-          <input type="text" className="input" value="11.432.423-k" />
+          <input type="text" className="input" value="20.655.222-2" />
         </div>
         <div className="fila centrado">
-          <div className="etiqueta">Área de Venta:</div>
+          <div className="etiqueta">Área de la venta:</div>
         </div>
         <div className="fila">
           <div className="titulo_producto">ID del Producto</div>
@@ -88,4 +87,4 @@ const FormSales = ({
   );
 };
 
-export default FormSales;
+export default FormVenta;

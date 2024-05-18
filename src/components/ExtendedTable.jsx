@@ -4,26 +4,31 @@ import "./extendedtable.css";
 import ProductForm from "./ProductForm";
 import OrderForm from "./OrderForm";
 
-const ExtendedTable = ({
-  currentTable,
-  data,
-  deleteTuple,
-  createTuple,
-  updateTuple,
-  fetchData,
-}) => {
+const IndexTable = ({ data }) => {
+  const [primaryKey, setPrimaryKey] = useState(null);
   const [columns, setColumns] = useState([]);
-  const [hoveredRow, setHoveredRow] = useState(null);
-  const [modifyTuple, setModifyTuple] = useState(null);
-  const [formAction, setFormAction] = useState(null);
-  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     if (data && data.length > 0) {
       const keys = Object.keys(data[0]);
+      setPrimaryKey(Object.keys(data[0])[0]);
       setColumns(keys);
     }
   }, [data]);
+
+  return { columns, primaryKey };
+};
+
+const LoadedTuples = ({
+  data,
+  columns,
+  primaryKey,
+  handleAction,
+  handleModify,
+  handleShowForm,
+  handleDelete,
+}) => {
+  const [hoveredRow, setHoveredRow] = useState(null);
 
   const handleMouseEnter = (id) => {
     setHoveredRow(id);
@@ -33,17 +38,80 @@ const ExtendedTable = ({
     setHoveredRow(null);
   };
 
+  return data.map((item, index) => (
+    <tr
+      key={index}
+      onMouseEnter={() => handleMouseEnter(item[primaryKey])}
+      onMouseLeave={handleMouseLeave}
+    >
+      {columns.map((column) => (
+        <td key={column}>{capitalizeFirstLetter(item[column])}</td>
+      ))}
+      <td className="boton-celda">
+        {hoveredRow === item[primaryKey] && (
+          <TupleButtons
+            handleAction={handleAction}
+            handleModify={handleModify}
+            handleShowForm={handleShowForm}
+            handleDelete={handleDelete}
+            id={item[primaryKey]}
+          />
+        )}
+      </td>
+    </tr>
+  ));
+};
+
+const TupleButtons = ({
+  handleAction,
+  handleModify,
+  handleShowForm,
+  handleDelete,
+  id,
+}) => {
+  return (
+    <div className="boton-contenedor">
+      <button
+        className="boton boton-modificar"
+        onClick={() => {
+          handleAction("modify");
+          handleModify(id);
+          handleShowForm();
+        }}
+      ></button>
+      <button
+        className="boton boton-eliminar"
+        onClick={() => handleDelete(id)}
+      ></button>
+    </div>
+  );
+};
+
+const ExtendedTable = ({
+  currentTable,
+  data,
+  deleteTuple,
+  createTuple,
+  updateTuple,
+  fetchData,
+}) => {
+  const [modifyTuple, setModifyTuple] = useState(null);
+  const [formAction, setFormAction] = useState(null);
+  const [showForm, setShowForm] = useState(false);
+
+  const { columns, primaryKey } = IndexTable({ data });
+
   const handleShowForm = () => {
     setShowForm(!showForm);
   };
 
   const handleModify = (id) => {
-    const modifyTuple = data.find((item) => item.id === id);
+    const modifyTuple = data.find((item) => item[primaryKey] === id);
     setModifyTuple(modifyTuple);
   };
 
-  const handleDelete = (id) => {
-    deleteTuple(id);
+  const handleFormAction = (arg) => {
+    setFormAction(arg);
   };
 
   const renderForm = (formProps) => {
@@ -69,36 +137,17 @@ const ExtendedTable = ({
             </tr>
           </thead>
           <tbody>
-            {data &&
-              data.map((item, index) => (
-                <tr
-                  key={index}
-                  onMouseEnter={() => handleMouseEnter(item.id)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  {columns.map((column) => (
-                    <td key={column}>{capitalizeFirstLetter(item[column])}</td>
-                  ))}
-                  <td className="boton-celda">
-                    {hoveredRow === item.id && (
-                      <div className="boton-contenedor">
-                        <button
-                          className="boton boton-modificar"
-                          onClick={() => {
-                            setFormAction("modify");
-                            handleModify(item.id);
-                            handleShowForm();
-                          }}
-                        ></button>
-                        <button
-                          className="boton boton-eliminar"
-                          onClick={() => handleDelete(item.id)}
-                        ></button>
-                      </div>
-                    )}
-                  </td>
-                </tr>
-              ))}
+            {data && (
+              <LoadedTuples
+                data={data}
+                columns={columns}
+                primaryKey={primaryKey}
+                handleAction={handleFormAction}
+                handleModify={handleModify}
+                handleShowForm={handleShowForm}
+                handleDelete={deleteTuple}
+              />
+            )}
           </tbody>
         </table>
       </div>
@@ -117,7 +166,6 @@ const ExtendedTable = ({
           mode: formAction,
           closeForm: handleShowForm,
           initialData: modifyTuple,
-          deleteTuple: deleteTuple,
           createTuple: createTuple,
           updateTuple: updateTuple,
           fetchData: fetchData,

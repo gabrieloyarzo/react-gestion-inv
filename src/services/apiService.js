@@ -14,6 +14,9 @@ export const ApiProducts = {
     }
   },
 
+
+
+
   async getProduct(productId) {
     try {
       const response = await fetch(`${API_URL}/producto/${productId}`);
