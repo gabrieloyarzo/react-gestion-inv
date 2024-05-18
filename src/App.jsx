@@ -3,13 +3,16 @@ import Sidebar from "./components/SideBar";
 import Productos from "./pages/Productos";
 import Login from "./components/Login";
 import OrderForm from "./components/OrderForm";
+import Salesform from "./components/Salesform";
 
 const App = () => {
   return (
     <>
-      {/*<Productos />*/}
+      {/*<Productos/>*/}
       {/*<Sidebar />*/}
-      <Login/>
+      {/*<Login/>*/}
+      <Salesform/>
+      {/*<OrderForm/>*/}
     </>
   );
 };
